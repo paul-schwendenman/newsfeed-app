@@ -4,7 +4,11 @@ import PostForm from "./PostForm.svelte";
 
 export let posts = [
 	{
+		author: "Gyasi Zardes",
+		authorImageUrl: "/static/headshots/zardes_gyasi.png",
 		body: "This is a post",
+		location: "Ohio",
+		createdAt: "2021-11-22 17:50",
 		likes: 0,
 		comments: [],
 	}
