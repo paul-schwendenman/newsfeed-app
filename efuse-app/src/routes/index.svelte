@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Feed from "$lib/Feed.svelte";
+</script>
+
+<div class="h-full max-w-screen-md mx-auto bg-gray-300">
+	<Feed></Feed>
+</div>
