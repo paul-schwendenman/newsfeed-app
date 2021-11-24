@@ -1,11 +1,10 @@
 <script lang="ts">
-import CommentList from "./CommentList.svelte";
 import Post from "./Post.svelte";
 import PostForm from "./PostForm.svelte";
 
-const posts = [
+export let posts = [
 	{
-		body: "This is a comment",
+		body: "This is a post",
 		likes: 0,
 		comments: [],
 	}
@@ -14,7 +13,7 @@ const posts = [
 
 </script>
 
-<div class="w-96 mx-auto p-8">
+<div class="p-8">
 	<PostForm />
 
 	{#each posts as post}

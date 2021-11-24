@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<div class="card border rounded-lg bg-white divide-y w-80">
+<div class="card border rounded-lg bg-white divide-y mb-4">
 	<div class="body p-4">
 		<slot></slot>
 	</div>
@@ -9,6 +9,3 @@
 		<slot name="footer"></slot>
 	</div>
 </div>
-
-<style lang="scss">
-</style>
