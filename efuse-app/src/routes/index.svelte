@@ -1,18 +1,19 @@
 <script lang="ts">
 	import Feed from "$lib/Feed.svelte";
+	import { PostModel } from "$lib/models";
 	import { postStore } from "$lib/stores";
+	import { setContext } from "svelte";
 
 	let posts = postStore([
-		{
+		PostModel.build({
 			author: "Gyasi Zardes",
 			authorImageUrl: "/static/headshots/zardes_gyasi.png",
 			body: "This is a post",
-			location: "Ohio",
 			createdAt: "2021-11-22 17:50",
-			likes: 0,
-			comments: [],
-		}
+		})
 	]);
+
+	setContext('posts', posts);
 
 	let author = {
 		name: "Harrison Afful",

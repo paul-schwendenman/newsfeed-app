@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class PostModel {
 	constructor({
 		author = null,
@@ -8,6 +10,7 @@ export class PostModel {
 		likes = 0,
 		comments = []
 	} = {}) {
+		this.id = uuidv4();
 		this.author = author;
 		this.authorImageUrl = authorImageUrl;
 		this.body = body;
@@ -19,5 +22,9 @@ export class PostModel {
 
 	static build(data) {
 		return Object.assign(new PostModel(), { ...data });
+	}
+
+	like() {
+		this.likes = this.likes + 1;
 	}
 }

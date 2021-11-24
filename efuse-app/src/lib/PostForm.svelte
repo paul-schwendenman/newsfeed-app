@@ -1,13 +1,15 @@
 <script>
+import { getContext } from "svelte";
+
 	import Card from "./Card.svelte";
 
 	export let author;
-	export let addPost;
 
 	let content = "";
+	const posts = getContext('posts');
 
 	function post() {
-		addPost({
+		posts.addPost({
 			body: content,
 			author: author.name,
 			authorImageUrl: author.imageUrl

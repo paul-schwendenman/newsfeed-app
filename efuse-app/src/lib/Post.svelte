@@ -2,11 +2,16 @@
 	import Card from "./Card.svelte";
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
+	import { getContext } from "svelte";
 
 	dayjs.extend(relativeTime);
 
 	export let post;
+	const posts = getContext('posts');
 
+	function like() {
+		posts.likePost(post.id);
+	}
 </script>
 
 <Card>
@@ -33,7 +38,7 @@
 	</div>
 
 	<svelte:fragment slot="footer">
-		<button class="mr-4"><i class="fas fa-heart"></i>Like</button>
+		<button on:click={like} class="mr-4"><i class="fas fa-heart"></i>Like</button>
 		<button><i class="fas fa-comment-dots"></i>Comment</button>
 	</svelte:fragment>
 </Card>

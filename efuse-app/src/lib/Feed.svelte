@@ -8,7 +8,7 @@ export let author;
 </script>
 
 <div class="p-8">
-	<PostForm addPost={posts.addPost} {author} />
+	<PostForm {author} />
 
 	{#each $posts as post}
 		<Post {post} />
