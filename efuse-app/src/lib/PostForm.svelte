@@ -6,7 +6,8 @@
 	<p>What is on your mind?</p>
 
 	<div slot="footer" class="flex justify-between">
-		<button class="bg-black rounded-full text-white text-xs px-4 py-2">Photo/Video</button>
+		<button class="bg-black rounded-full text-white text-xs px-4 py-2"><i class="fas fa-photo-video"></i>Photo/Video</button>
+
 		<button class="bg-blue-300 rounded text-white px-4 py-2">Post It</button>
 	</div>
 </Card>

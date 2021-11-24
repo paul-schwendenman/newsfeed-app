@@ -2,3 +2,7 @@ body, html {
 	height: 100%;
 	@apply bg-gray-300;
 }
+
+.fas {
+	@apply mr-2;
+}
