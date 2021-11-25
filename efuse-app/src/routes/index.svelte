@@ -7,7 +7,7 @@
 	let posts = postStore([
 		PostModel.build({
 			author: "Gyasi Zardes",
-			authorImageUrl: "/static/headshots/zardes_gyasi.png",
+			authorImageUrl: "/headshots/zardes_gyasi.png",
 			body: "This is a post",
 			createdAt: "2021-11-22 17:50",
 		})
@@ -17,7 +17,7 @@
 
 	let author = {
 		name: "Harrison Afful",
-		imageUrl: "/static/headshots/afful_harrison.png"
+		imageUrl: "/headshots/afful_harrison.png"
 	};
 </script>
 
