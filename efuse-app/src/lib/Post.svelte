@@ -5,10 +5,12 @@
 	import { getContext } from "svelte";
 	import CommentList from "./CommentList.svelte";
 	import Image from "./Image.svelte";
+import CommentForm from "./CommentForm.svelte";
 
 	dayjs.extend(relativeTime);
 
 	export let post;
+
 	let showComments = post.comments.length > 0;
 
 	const posts = getContext('posts');
@@ -28,7 +30,7 @@
 			<Image alt="{post.author}" src={post.authorImageUrl} />
 		</div>
 		<div class="flex flex-col header-details">
-			<span class="text text-gray-900">{post.author}</span>
+			<span class="text text-gray-900 font-medium">{post.author}</span>
 			<span class="text-sm text-blue-700"><i class="fas fa-map-marker-alt"></i>{post.location}</span>
 			<span class="text-sm text-gray-900">{dayjs(post.createdAt).fromNow()}</span>
 		</div>
@@ -50,7 +52,10 @@
 		<button on:click={toggleShowComments}><i class="fas fa-comment-dots"></i>Comment</button>
 
 		{#if showComments}
-			<CommentList comments={post.comments} />
+			<div class="mt-4">
+				<CommentForm />
+				<CommentList comments={post.comments} />
+			</div>
 		{/if}
 	</svelte:fragment>
 </Card>

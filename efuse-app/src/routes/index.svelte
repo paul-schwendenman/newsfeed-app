@@ -33,6 +33,8 @@
 		name: "Harrison Afful",
 		imageUrl: "/headshots/afful_harrison.png"
 	};
+
+	setContext('user', author);
 </script>
 
 <div class="h-full max-w-screen-md mx-auto bg-gray-300">

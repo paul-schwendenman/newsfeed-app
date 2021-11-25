@@ -18,7 +18,7 @@
 	</div>
 	<div class="w-full p-4 bg-gray-300 rounded-lg text-gray-900">
 		<div class="flex justify-between w-full mr-8">
-			<span class="leading-8">{author}</span>
+			<span class="leading-8 font-medium">{author}</span>
 			<span class="leading-8 text-gray-500">{dayjs(createdAt).fromNow()}</span>
 		</div>
 		<div>
