@@ -28,6 +28,6 @@ import { getContext } from "svelte";
 	<div slot="footer" class="flex justify-between">
 		<button class="bg-black rounded-full text-white text-xs px-4 py-2"><i class="fas fa-photo-video"></i>Photo/Video</button>
 
-		<button class="bg-blue-400 rounded text-white px-4 py-2" on:click={post}>Post It</button>
+		<button class="bg-blue-400 rounded text-white px-4 py-2" on:click={post} disabled={content === ""}>Post It</button>
 	</div>
 </Card>
