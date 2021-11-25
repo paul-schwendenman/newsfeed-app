@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Card from "./Card.svelte";
 	import dayjs from 'dayjs';
-	import relativeTime from 'dayjs/plugin/relativeTime';
+	import relativeTime from 'dayjs/plugin/relativeTime.js';
 	import { getContext } from "svelte";
 	import CommentList from "./CommentList.svelte";
 	import Image from "./Image.svelte";

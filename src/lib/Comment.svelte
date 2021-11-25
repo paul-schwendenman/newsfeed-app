@@ -1,6 +1,6 @@
 <script>
 	import dayjs from 'dayjs';
-	import relativeTime from 'dayjs/plugin/relativeTime';
+	import relativeTime from 'dayjs/plugin/relativeTime.js';
 	import Image from "./Image.svelte";
 
 	dayjs.extend(relativeTime);
