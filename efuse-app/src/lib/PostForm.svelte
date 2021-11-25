@@ -1,7 +1,7 @@
 <script>
-import { getContext } from "svelte";
-
+	import { getContext } from "svelte";
 	import Card from "./Card.svelte";
+	import Image from "./Image.svelte";
 
 	export let author;
 
@@ -20,9 +20,9 @@ import { getContext } from "svelte";
 
 <Card>
 	<div class="flex gap-4">
-		<img src={author.imageUrl} alt={author.name} class="rounded-full w-16" />
+		<Image src={author.imageUrl} alt={author.name} />
 
-		<input type="text" bind:value={content} placeholder="What is on your mind?" class="w-full leading-loose p-1" />
+		<input type="text" bind:value={content} placeholder="What is on your mind?" class="w-full leading-loose p-1 focus:outline-none" />
 	</div>
 
 	<div slot="footer" class="flex justify-between">

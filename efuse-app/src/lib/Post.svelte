@@ -3,21 +3,29 @@
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
 	import { getContext } from "svelte";
+	import CommentList from "./CommentList.svelte";
+	import Image from "./Image.svelte";
 
 	dayjs.extend(relativeTime);
 
 	export let post;
+	let showComments = false;
+
 	const posts = getContext('posts');
 
 	function like() {
 		posts.likePost(post.id);
 	}
+
+	function toggleShowComments() {
+		showComments = !showComments;
+	}
 </script>
 
 <Card>
 	<div class="header flex my-4">
-		<div class="header-image w-16 rounded-full mx-4">
-			<img alt="{post.author}" src={post.authorImageUrl} class="rounded-full" />
+		<div class="header-image mx-4">
+			<Image alt="{post.author}" src={post.authorImageUrl} />
 		</div>
 		<div class="flex flex-col header-details">
 			<span class="text text-gray-900">{post.author}</span>
@@ -39,6 +47,10 @@
 
 	<svelte:fragment slot="footer">
 		<button on:click={like} class="mr-4"><i class="fas fa-heart"></i>Like</button>
-		<button><i class="fas fa-comment-dots"></i>Comment</button>
+		<button on:click={toggleShowComments}><i class="fas fa-comment-dots"></i>Comment</button>
+
+		{#if showComments}
+			<CommentList comments={post.comments} />
+		{/if}
 	</svelte:fragment>
 </Card>
