@@ -9,7 +9,7 @@
 	dayjs.extend(relativeTime);
 
 	export let post;
-	let showComments = false;
+	let showComments = post.comments.length > 0;
 
 	const posts = getContext('posts');
 
