@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Feed from "$lib/Feed.svelte";
-	import { PostModel } from "$lib/models";
+	import { CommentModel, PostModel } from "$lib/models";
 	import { postStore } from "$lib/stores";
 	import { setContext } from "svelte";
 
@@ -10,6 +10,20 @@
 			authorImageUrl: "/headshots/zardes_gyasi.png",
 			body: "This is a post",
 			createdAt: "2021-11-22 17:50",
+		}),
+		PostModel.build({
+			author: "Gyasi Zardes",
+			authorImageUrl: "/headshots/zardes_gyasi.png",
+			body: "This is another post",
+			createdAt: "2021-11-22 17:50",
+			comments: [
+				CommentModel.build({
+					author: "Gyasi Zardes",
+					authorImageUrl: "/headshots/zardes_gyasi.png",
+					text: "This is a comment",
+					createdAt: "2021-11-22 17:50",
+				})
+			]
 		})
 	]);
 

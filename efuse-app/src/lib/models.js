@@ -1,4 +1,31 @@
+import { text } from 'svelte/internal';
 import { v4 as uuidv4 } from 'uuid';
+
+
+export class CommentModel {
+	constructor({
+		text = null,
+		author = null,
+		authorImageUrl = null,
+		likes = 0,
+		createdAt = new Date()
+	} = {}) {
+		this.id = uuidv4();
+		this.text = text;
+		this.author = author;
+		this.authorImageUrl = authorImageUrl;
+		this.likes = likes;
+		this.createdAt = createdAt;
+	}
+
+	static build(data) {
+		return Object.assign(new CommentModel(), { ...data });
+	}
+
+	like() {
+		this.likes = this.likes + 1;
+	}
+}
 
 export class PostModel {
 	constructor({
