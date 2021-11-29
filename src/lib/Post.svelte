@@ -5,7 +5,7 @@
 	import { getContext } from "svelte";
 	import CommentList from "./CommentList.svelte";
 	import Image from "./Image.svelte";
-import CommentForm from "./CommentForm.svelte";
+	import CommentForm from "./CommentForm.svelte";
 
 	dayjs.extend(relativeTime);
 
