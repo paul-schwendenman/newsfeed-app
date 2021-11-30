@@ -11,7 +11,7 @@ test('should render', () => {
 	const comment = CommentModel.build({
 		author,
 		text: 'This is a comment',
-		createdAt: '2021-11-22 17:50',
+		createdAt: new Date('2021-11-22 17:50'),
 		likes: 10
 	});
 

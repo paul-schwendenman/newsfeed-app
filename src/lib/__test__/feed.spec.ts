@@ -13,7 +13,7 @@ test.skip('should render', () => {
 		PostModel.build({
 			author: postAuthor,
 			body: 'This is a post',
-			createdAt: '2021-11-22 17:50'
+			createdAt: new Date('2021-11-22 17:50')
 		})
 	]);
 
