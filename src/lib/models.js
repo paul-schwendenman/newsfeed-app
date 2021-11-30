@@ -1,11 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-
 export class AuthorModel {
-	constructor({
-		name = null,
-		imageUrl = null
-	} = {}) {
+	constructor({ name = null, imageUrl = null } = {}) {
 		this.name = name;
 		this.imageUrl = imageUrl;
 	}
@@ -15,14 +11,8 @@ export class AuthorModel {
 	}
 }
 
-
 export class CommentModel {
-	constructor({
-		text = null,
-		author = null,
-		likes = 0,
-		createdAt = new Date()
-	} = {}) {
+	constructor({ text = null, author = null, likes = 0, createdAt = new Date() } = {}) {
 		this.id = uuidv4();
 		this.text = text;
 		this.author = author;
@@ -31,7 +21,7 @@ export class CommentModel {
 	}
 
 	static build(data) {
-		return Object.assign(new CommentModel(), { ...data, author: AuthorModel.build(data.author)});
+		return Object.assign(new CommentModel(), { ...data, author: AuthorModel.build(data.author) });
 	}
 
 	like() {
@@ -46,7 +36,7 @@ export class PostModel {
 	constructor({
 		author = null,
 		body = null,
-		location = "Ohio",
+		location = 'Ohio',
 		createdAt = new Date(),
 		likes = 0,
 		comments = []
@@ -68,7 +58,7 @@ export class PostModel {
 		return PostModel.build({
 			...this,
 			likes: this.likes + 1
-		})
+		});
 	}
 
 	addComment(author, text) {
@@ -85,7 +75,7 @@ export class PostModel {
 	}
 
 	likeComment(commentId) {
-		const comments = this.comments.map(comment => {
+		const comments = this.comments.map((comment) => {
 			if (commentId === comment.id) {
 				return comment.like();
 			} else {
@@ -102,7 +92,7 @@ export class PostModel {
 	removeComment(commentId) {
 		return PostModel.build({
 			...this,
-			comments: this.comments.filter(comment => commentId !== comment.id)
-		})
+			comments: this.comments.filter((comment) => commentId !== comment.id)
+		});
 	}
 }

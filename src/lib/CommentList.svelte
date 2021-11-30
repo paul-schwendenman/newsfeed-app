@@ -1,9 +1,9 @@
 <script>
-	import Comment from "./Comment.svelte";
+	import Comment from './Comment.svelte';
 
 	export let comments = [];
 </script>
 
-{#each comments as comment }
+{#each comments as comment}
 	<Comment {...comment} on:likePostComment on:deletePostComment />
 {/each}

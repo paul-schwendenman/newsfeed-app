@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Post from "./Post.svelte";
-	import PostForm from "./PostForm.svelte";
+	import Post from './Post.svelte';
+	import PostForm from './PostForm.svelte';
 
 	export let posts;
 </script>

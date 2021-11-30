@@ -2,7 +2,7 @@
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
 	import { createEventDispatcher } from 'svelte';
-	import Image from "./Image.svelte";
+	import Image from './Image.svelte';
 
 	dayjs.extend(relativeTime);
 
@@ -17,13 +17,13 @@
 	function likeComment() {
 		dispatch('likePostComment', {
 			commentId: id
-		})
+		});
 	}
 
 	function deleteComment() {
 		dispatch('deletePostComment', {
 			commentId: id
-		})
+		});
 	}
 </script>
 
@@ -41,9 +41,9 @@
 		</div>
 		<div class="text-gray-500">
 			<span class="mr-2">{likes} likes</span> |
-			<button class="m-2" on:click={likeComment}><i class="fas fa-heart"></i> Like</button> |
-			<button class="m-2"><i class="fas fa-pencil-alt"></i> Edit</button> |
-			<button class="m-2" on:click={deleteComment}><i class="fas fa-trash"></i> Delete</button>
+			<button class="m-2" on:click={likeComment}><i class="fas fa-heart" /> Like</button> |
+			<button class="m-2"><i class="fas fa-pencil-alt" /> Edit</button> |
+			<button class="m-2" on:click={deleteComment}><i class="fas fa-trash" /> Delete</button>
 		</div>
 	</div>
 </div>

@@ -1,29 +1,28 @@
-import { render } from "@testing-library/svelte";
-import { setContext } from "svelte";
-import { readable } from "svelte/store";
-import Feed from "../Feed.svelte";
-import { AuthorModel, PostModel } from "../models";
+import { render } from '@testing-library/svelte';
+import { readable } from 'svelte/store';
+import Feed from '../Feed.svelte';
+import { AuthorModel, PostModel } from '../models';
 
-test.skip("should render", () => {
-  const postAuthor = AuthorModel.build({
-      name: "Gyasi Zardes",
-      imageUrl: "/headshots/zardes_gyasi.png",
-  });
+test.skip('should render', () => {
+	const postAuthor = AuthorModel.build({
+		name: 'Gyasi Zardes',
+		imageUrl: '/headshots/zardes_gyasi.png'
+	});
 
-  let posts = readable([
-    PostModel.build({
-      author: postAuthor,
-      body: "This is a post",
-      createdAt: "2021-11-22 17:50",
-    })
-  ]);
+	const posts = readable([
+		PostModel.build({
+			author: postAuthor,
+			body: 'This is a post',
+			createdAt: '2021-11-22 17:50'
+		})
+	]);
 
-  const author = {
-    name: "Harrison Afful",
-    imageUrl: "/headshots/afful_harrison.png"
-  };
+	const author = {
+		name: 'Harrison Afful',
+		imageUrl: '/headshots/afful_harrison.png'
+	};
 
-  const results = render(Feed, { props: { posts }, context: { user: author} });
+	const results = render(Feed, { props: { posts }, context: { user: author } });
 
-  expect(() => results.getByText("This is a post")).not.toThrow();
+	expect(() => results.getByText('This is a post')).not.toThrow();
 });
