@@ -18,7 +18,7 @@
 	}
 
 	function handleKeydown(event) {
-		if(event.keyCode == 12) {
+		if(event.keyCode == 13) {
 			post();
 		}
 	}
