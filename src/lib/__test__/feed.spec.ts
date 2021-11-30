@@ -4,7 +4,7 @@ import { readable } from "svelte/store";
 import Feed from "../Feed.svelte";
 import { AuthorModel, PostModel } from "../models";
 
-test("should render", () => {
+test.skip("should render", () => {
   const postAuthor = AuthorModel.build({
       name: "Gyasi Zardes",
       imageUrl: "/headshots/zardes_gyasi.png",
