@@ -33,6 +33,10 @@ function postReducer(state, action) {
 			return likePost(state, action);
 		case "addPostComment":
 			return addPostComment(state, action);
+		default:
+			console.log(`Unknown type: ${action.type}`);
+
+			return state;
 
 	}
 }
