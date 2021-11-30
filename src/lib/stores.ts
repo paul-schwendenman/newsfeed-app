@@ -15,7 +15,7 @@ interface ActionEvent {
 }
 
 export interface ReduxStore<Type> {
-	subscribe: () => Writable<Type>['subscribe'];
+	subscribe: Writable<Type>['subscribe'];
 
 	dispatch: (arg0: ActionEvent) => void;
 }
