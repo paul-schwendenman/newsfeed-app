@@ -1,19 +1,19 @@
 <script>
-	import { getContext } from "svelte";
+	import { createEventDispatcher } from "svelte";
 	import Card from "./Card.svelte";
 	import Image from "./Image.svelte";
 
 	export let author;
 
+	const dispatch = createEventDispatcher();
 	let content = "";
-	const posts = getContext('posts');
 
 	function post() {
-		posts.addPost({
-			body: content,
-			author: author.name,
-			authorImageUrl: author.imageUrl
-		});
+		dispatch('addPost', {
+			content,
+			author
+		})
+
 		content = "";
 	}
 </script>
