@@ -2,7 +2,7 @@
 	import Card from "./Card.svelte";
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, setContext } from "svelte";
 	import CommentList from "./CommentList.svelte";
 	import Image from "./Image.svelte";
 	import CommentForm from "./CommentForm.svelte";
@@ -21,6 +21,8 @@
 	function toggleShowComments() {
 		showComments = !showComments;
 	}
+
+	setContext("postId", post.id);
 </script>
 
 <Card>
@@ -53,7 +55,7 @@
 		{#if showComments}
 			<div class="mt-4">
 				<CommentForm postId={post.id} on:addComment />
-				<CommentList comments={post.comments} />
+				<CommentList comments={post.comments} on:likePostComment />
 			</div>
 		{/if}
 	</svelte:fragment>

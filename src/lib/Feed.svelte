@@ -54,12 +54,27 @@ function likePost(event) {
 		postId
 	})
 }
+
+function likePostComment(event) {
+	const {
+		detail: {
+			postId,
+			id: commentId
+		}
+	} = event;
+
+	posts.dispatch({
+		type: 'likePostComment',
+		postId,
+		commentId
+	});
+}
 </script>
 
 <div class="p-8">
 	<PostForm on:addPost={addPost} />
 
 	{#each $posts as post}
-		<Post {post} on:addComment={addComment} on:likePost={likePost} />
+		<Post {post} on:addComment={addComment} on:likePost={likePost} on:likePostComment={likePostComment} />
 	{/each}
 </div>

@@ -17,6 +17,23 @@ function likePost(state, action) {
 	return state
 }
 
+function likePostComment(state, action) {
+	const { postId, commentId } = action;
+
+	return state.map((post) => {
+		if(post.id === postId) {
+			post.comments.forEach(comment => {
+				if (comment.id === commentId) {
+					comment.like()
+				}
+
+				return comment;
+			});
+		}
+		return post;
+	});
+}
+
 function addPostComment(state, action) {
 	const { postId, comment, author } = action;
 
@@ -33,6 +50,8 @@ function postReducer(state, action) {
 			return likePost(state, action);
 		case "addPostComment":
 			return addPostComment(state, action);
+		case "likePostComment":
+			return likePostComment(state, action);
 		default:
 			console.log(`Unknown type: ${action.type}`);
 

@@ -1,6 +1,7 @@
 <script>
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
+	import { createEventDispatcher, getContext } from 'svelte';
 	import Image from "./Image.svelte";
 
 	dayjs.extend(relativeTime);
@@ -10,6 +11,17 @@
 	export let author;
 	export let authorImageUrl;
 	export let likes;
+	export let id;
+
+	const postId = getContext("postId");
+	const dispatch = createEventDispatcher();
+
+	function likeComment() {
+		dispatch('likePostComment', {
+			postId,
+			id
+		})
+	}
 </script>
 
 <div class="flex items-center my-4">
@@ -26,7 +38,7 @@
 		</div>
 		<div class="text-gray-500">
 			<span class="mr-2">{likes} likes</span> |
-			<button class="m-2"><i class="fas fa-heart"></i> Like</button> |
+			<button class="m-2" on:click={likeComment}><i class="fas fa-heart"></i> Like</button> |
 			<button class="m-2"><i class="fas fa-pencil-alt"></i> Edit</button> |
 			<button class="m-2"><i class="fas fa-trash"></i> Delete</button>
 		</div>
