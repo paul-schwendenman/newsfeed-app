@@ -35,9 +35,19 @@
 		imageUrl: "/headshots/afful_harrison.png"
 	};
 
+	function doPostAction(event) {
+		const {
+			detail
+		} = event;
+
+		posts.dispatch({
+			...detail
+		})
+	}
+
 	setContext('user', author);
 </script>
 
 <div class="h-full max-w-screen-md mx-auto bg-gray-300">
-	<Feed {posts}></Feed>
+	<Feed {posts} on:postAction={doPostAction}></Feed>
 </div>

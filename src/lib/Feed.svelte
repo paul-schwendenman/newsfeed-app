@@ -1,8 +1,12 @@
 <script lang="ts">
+import { createEventDispatcher } from "svelte";
+
 import Post from "./Post.svelte";
 import PostForm from "./PostForm.svelte";
 
 export let posts;
+
+const dispatch = createEventDispatcher();
 
 function addPost(event) {
 	const {
@@ -15,7 +19,7 @@ function addPost(event) {
 		}
 	} = event;
 
-	posts.dispatch({
+	dispatch('postAction', {
 		type: "addPost",
 		post: {
 			body: content,
@@ -25,22 +29,12 @@ function addPost(event) {
 	});
 }
 
-function doPostAction(event) {
-	const {
-		detail
-	} = event;
-
-	posts.dispatch({
-		...detail
-	})
-}
-
 </script>
 
 <div class="p-8">
 	<PostForm on:addPost={addPost} />
 
 	{#each $posts as post}
-		<Post {post} on:postAction={doPostAction} />
+		<Post {post} on:postAction />
 	{/each}
 </div>
