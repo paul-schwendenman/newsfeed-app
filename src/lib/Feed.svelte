@@ -15,10 +15,13 @@ function addPost(event) {
 		}
 	} = event;
 
-	posts.addPost({
-		body: content,
-		author: name,
-		authorImageUrl: imageUrl
+	posts.dispatch({
+		type: "addPost",
+		post: {
+			body: content,
+			author: name,
+			authorImageUrl: imageUrl
+		}
 	});
 }
 
@@ -26,12 +29,17 @@ function addComment(event) {
 	const {
 		detail: {
 			author,
-			content,
+			content: comment,
 			postId
 		}
 	} = event;
 
-	posts.addPostComment(postId, { author, content })
+	posts.dispatch({
+		type: "addPostComment",
+		postId,
+		author,
+		comment
+	});
 }
 </script>
 

@@ -1,39 +1,55 @@
-import { time_ranges_to_array } from "svelte/internal";
 import { writable } from "svelte/store"
 import { PostModel } from "./models";
 
 
-export function postStore(defaultValue = []) {
-	const { subscribe, set, update} = writable(defaultValue);
+function addPost(state, action) {
+	const { post } = action;
 
-	const addPost = (post) => {
-		update((currentValue) => [PostModel.build(post), ...currentValue])
+	return [PostModel.build(post), ...state];
+}
+
+
+function likePost(state, action) {
+	const { postId } = action;
+
+	state.filter(post => post.id === postId).map((post) => post.like());
+
+	return state
+}
+
+function addPostComment(state, action) {
+	const { postId, comment, author } = action;
+
+	state.filter(post => post.id === postId)[0].addComment(author, comment);
+
+	return state;
+}
+
+function postReducer(state, action) {
+	switch(action.type) {
+		case "addPost":
+			return addPost(state, action);
+		case "likePost":
+			return likePost(state, action);
+		case "addPostComment":
+			return addPostComment(state, action);
+
 	}
+}
 
-	const likePost = (postId) => {
-		update((currentValue) => {
-			currentValue.filter(post => post.id === postId).map(post => {post.like()});
+function reducible(state, reducer) {
+	const { update, subscribe } = writable(state);
 
-			return currentValue;
-		});
-
-	}
-
-	const addPostComment = (postId, comment) => {
-		const { author, content } = comment;
-
-		update((currentValue) => {
-			currentValue.filter(post => post.id === postId)[0].addComment(author, content);
-
-			return currentValue;
-		});
+	function dispatch(action) {
+		update(state => reducer(state, action));
 	}
 
 	return {
-		addPost,
-		likePost,
-		addPostComment,
-		set,
+		dispatch,
 		subscribe
-	}
+	};
+}
+
+export function postStore(init = []) {
+	return reducible(init, postReducer);
 }
