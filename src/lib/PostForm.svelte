@@ -1,17 +1,17 @@
 <script>
-	import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher, getContext } from "svelte";
 	import Card from "./Card.svelte";
 	import Image from "./Image.svelte";
 
-	export let author;
-
+	const currentUser = getContext('user');
 	const dispatch = createEventDispatcher();
+
 	let content = "";
 
 	function post() {
 		dispatch('addPost', {
 			content,
-			author
+			author: currentUser
 		})
 
 		content = "";
@@ -26,7 +26,7 @@
 
 <Card>
 	<div class="flex gap-4">
-		<Image src={author.imageUrl} alt={author.name} />
+		<Image src={currentUser.imageUrl} alt={currentUser.name} />
 
 		<input type="text" bind:value={content} placeholder="What is on your mind?" class="w-full leading-loose p-1 focus:outline-none" on:keydown={handleKeydown} />
 	</div>

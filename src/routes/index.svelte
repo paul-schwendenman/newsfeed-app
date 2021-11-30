@@ -39,5 +39,5 @@
 </script>
 
 <div class="h-full max-w-screen-md mx-auto bg-gray-300">
-	<Feed {posts} {author}></Feed>
+	<Feed {posts}></Feed>
 </div>
