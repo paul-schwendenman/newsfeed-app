@@ -1,4 +1,3 @@
-import { text } from 'svelte/internal';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -53,5 +52,13 @@ export class PostModel {
 
 	like() {
 		this.likes = this.likes + 1;
+	}
+
+	addComment(author, text) {
+		this.comments = [CommentModel.build({
+			author: author.name,
+			authorImageUrl: author.imageUrl,
+			text
+		}), ...this.comments];
 	}
 }

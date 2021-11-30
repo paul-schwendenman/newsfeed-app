@@ -21,12 +21,24 @@ function addPost(event) {
 		authorImageUrl: imageUrl
 	});
 }
+
+function addComment(event) {
+	const {
+		detail: {
+			author,
+			content,
+			postId
+		}
+	} = event;
+
+	posts.addPostComment(postId, { author, content })
+}
 </script>
 
 <div class="p-8">
-	<PostForm on:addPost={addPost}/>
+	<PostForm on:addPost={addPost} />
 
 	{#each $posts as post}
-		<Post {post} />
+		<Post {post} on:addComment={addComment} />
 	{/each}
 </div>
