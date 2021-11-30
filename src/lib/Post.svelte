@@ -55,7 +55,7 @@
 		{#if showComments}
 			<div class="mt-4">
 				<CommentForm postId={post.id} on:addComment />
-				<CommentList comments={post.comments} on:likePostComment />
+				<CommentList comments={post.comments} on:likePostComment on:deletePostComment />
 			</div>
 		{/if}
 	</svelte:fragment>

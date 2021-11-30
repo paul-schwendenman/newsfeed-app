@@ -32,6 +32,17 @@ function likePostComment(state, action) {
 	});
 }
 
+function deletePostComment(state, action) {
+	const { postId, commentId } = action;
+
+	return state.map((post) => {
+		if(post.id === postId) {
+			return post.removeComment(commentId);
+		}
+		return post;
+	});
+}
+
 function addPostComment(state, action) {
 	const { postId, comment, author } = action;
 
@@ -54,6 +65,8 @@ function postReducer(state, action) {
 			return addPostComment(state, action);
 		case "likePostComment":
 			return likePostComment(state, action);
+		case "deletePostComment":
+			return deletePostComment(state, action);
 		default:
 			console.log(`Unknown type: ${action.type}`);
 

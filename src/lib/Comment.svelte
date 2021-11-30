@@ -22,6 +22,13 @@
 			id
 		})
 	}
+
+	function deleteComment() {
+		dispatch('deletePostComment', {
+			postId,
+			id
+		})
+	}
 </script>
 
 <div class="flex items-center my-4">
@@ -40,7 +47,7 @@
 			<span class="mr-2">{likes} likes</span> |
 			<button class="m-2" on:click={likeComment}><i class="fas fa-heart"></i> Like</button> |
 			<button class="m-2"><i class="fas fa-pencil-alt"></i> Edit</button> |
-			<button class="m-2"><i class="fas fa-trash"></i> Delete</button>
+			<button class="m-2" on:click={deleteComment}><i class="fas fa-trash"></i> Delete</button>
 		</div>
 	</div>
 </div>

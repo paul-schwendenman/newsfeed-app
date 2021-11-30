@@ -5,5 +5,5 @@
 </script>
 
 {#each comments as comment }
-	<Comment {...comment} on:likePostComment />
+	<Comment {...comment} on:likePostComment on:deletePostComment />
 {/each}

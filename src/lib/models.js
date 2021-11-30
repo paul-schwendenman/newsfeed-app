@@ -88,4 +88,11 @@ export class PostModel {
 			comments
 		});
 	}
+
+	removeComment(commentId) {
+		return PostModel.build({
+			...this,
+			comments: this.comments.filter(comment => commentId !== comment.id)
+		})
+	}
 }

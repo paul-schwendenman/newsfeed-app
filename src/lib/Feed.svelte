@@ -69,12 +69,28 @@ function likePostComment(event) {
 		commentId
 	});
 }
+
+function deletePostComment(event) {
+	const {
+		detail: {
+			postId,
+			id: commentId
+		}
+	} = event;
+
+	posts.dispatch({
+		type: 'deletePostComment',
+		postId,
+		commentId
+	});
+
+}
 </script>
 
 <div class="p-8">
 	<PostForm on:addPost={addPost} />
 
 	{#each $posts as post}
-		<Post {post} on:addComment={addComment} on:likePost={likePost} on:likePostComment={likePostComment} />
+		<Post {post} on:addComment={addComment} on:likePost={likePost} on:likePostComment={likePostComment} on:deletePostComment={deletePostComment} />
 	{/each}
 </div>
