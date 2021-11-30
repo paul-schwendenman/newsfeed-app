@@ -2,7 +2,7 @@
 	import Card from "./Card.svelte";
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
-	import { getContext } from "svelte";
+	import { createEventDispatcher } from "svelte";
 	import CommentList from "./CommentList.svelte";
 	import Image from "./Image.svelte";
 	import CommentForm from "./CommentForm.svelte";
@@ -11,12 +11,11 @@
 
 	export let post;
 
+	const dispatch = createEventDispatcher();
 	let showComments = post.comments.length > 0;
 
-	const posts = getContext('posts');
-
 	function like() {
-		posts.likePost(post.id);
+		dispatch('likePost', { postId: post.id });
 	}
 
 	function toggleShowComments() {
