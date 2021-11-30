@@ -12,9 +12,13 @@ function addPost(state, action) {
 function likePost(state, action) {
 	const { postId } = action;
 
-	state.filter(post => post.id === postId).map((post) => post.like());
-
-	return state
+	return state.map((post) => {
+		if(post.id === postId) {
+			return post.like();
+		} else {
+			return post;
+		}
+	});
 }
 
 function likePostComment(state, action) {
@@ -22,13 +26,7 @@ function likePostComment(state, action) {
 
 	return state.map((post) => {
 		if(post.id === postId) {
-			post.comments.forEach(comment => {
-				if (comment.id === commentId) {
-					comment.like()
-				}
-
-				return comment;
-			});
+			return post.likeComment(commentId);
 		}
 		return post;
 	});
@@ -37,9 +35,13 @@ function likePostComment(state, action) {
 function addPostComment(state, action) {
 	const { postId, comment, author } = action;
 
-	state.filter(post => post.id === postId)[0].addComment(author, comment);
-
-	return state;
+	return state.map(post => {
+		if (post.id === postId) {
+			return post.addComment(author, comment);
+		} else {
+			return post;
+		}
+	});
 }
 
 function postReducer(state, action) {

@@ -22,7 +22,10 @@ export class CommentModel {
 	}
 
 	like() {
-		this.likes = this.likes + 1;
+		return CommentModel.build({
+			...this,
+			likes: this.likes + 1
+		});
 	}
 }
 
@@ -51,14 +54,38 @@ export class PostModel {
 	}
 
 	like() {
-		this.likes = this.likes + 1;
+		return PostModel.build({
+			...this,
+			likes: this.likes + 1
+		})
 	}
 
 	addComment(author, text) {
-		this.comments = [CommentModel.build({
-			author: author.name,
-			authorImageUrl: author.imageUrl,
-			text
-		}), ...this.comments];
+		return PostModel.build({
+			...this,
+			comments: [
+				CommentModel.build({
+					author: author.name,
+					authorImageUrl: author.imageUrl,
+					text
+				}),
+				...this.comments
+			]
+		});
+	}
+
+	likeComment(commentId) {
+		const comments = this.comments.map(comment => {
+			if (commentId === comment.id) {
+				return comment.like();
+			} else {
+				return comment;
+			}
+		});
+
+		return PostModel.build({
+			...this,
+			comments
+		});
 	}
 }
