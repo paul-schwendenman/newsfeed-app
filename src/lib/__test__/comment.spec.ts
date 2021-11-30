@@ -5,7 +5,7 @@ import { AuthorModel, CommentModel } from '../models';
 test('should render', () => {
 	const author = AuthorModel.build({
 		name: 'Gyasi Zardes',
-		authorImageUrl: '/headshots/zardes_gyasi.png'
+		imageUrl: '/headshots/zardes_gyasi.png'
 	});
 
 	const comment = CommentModel.build({
