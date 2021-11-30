@@ -1,24 +1,37 @@
 import { v4 as uuidv4 } from 'uuid';
 
 
+export class AuthorModel {
+	constructor({
+		name = null,
+		imageUrl = null
+	} = {}) {
+		this.name = name;
+		this.imageUrl = imageUrl;
+	}
+
+	static build(data) {
+		return Object.assign(new AuthorModel(), { ...data });
+	}
+}
+
+
 export class CommentModel {
 	constructor({
 		text = null,
 		author = null,
-		authorImageUrl = null,
 		likes = 0,
 		createdAt = new Date()
 	} = {}) {
 		this.id = uuidv4();
 		this.text = text;
 		this.author = author;
-		this.authorImageUrl = authorImageUrl;
 		this.likes = likes;
 		this.createdAt = createdAt;
 	}
 
 	static build(data) {
-		return Object.assign(new CommentModel(), { ...data });
+		return Object.assign(new CommentModel(), { ...data, author: AuthorModel.build(data.author)});
 	}
 
 	like() {
@@ -32,7 +45,6 @@ export class CommentModel {
 export class PostModel {
 	constructor({
 		author = null,
-		authorImageUrl = null,
 		body = null,
 		location = "Ohio",
 		createdAt = new Date(),
@@ -41,7 +53,6 @@ export class PostModel {
 	} = {}) {
 		this.id = uuidv4();
 		this.author = author;
-		this.authorImageUrl = authorImageUrl;
 		this.body = body;
 		this.location = location;
 		this.createdAt = createdAt;
@@ -50,7 +61,7 @@ export class PostModel {
 	}
 
 	static build(data) {
-		return Object.assign(new PostModel(), { ...data });
+		return Object.assign(new PostModel(), { ...data, author: AuthorModel.build(data.author) });
 	}
 
 	like() {
@@ -65,8 +76,7 @@ export class PostModel {
 			...this,
 			comments: [
 				CommentModel.build({
-					author: author.name,
-					authorImageUrl: author.imageUrl,
+					author: author,
 					text
 				}),
 				...this.comments

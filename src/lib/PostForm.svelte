@@ -9,9 +9,12 @@
 	let content = "";
 
 	function post() {
-		dispatch('addPost', {
-			content,
-			author: currentUser
+		dispatch('postAction', {
+			type: "addPost",
+			post: {
+				body: content,
+				author: currentUser
+			}
 		})
 
 		content = "";

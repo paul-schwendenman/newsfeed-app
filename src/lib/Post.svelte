@@ -28,10 +28,10 @@
 <Card>
 	<div class="header flex my-4">
 		<div class="header-image mx-4">
-			<Image alt="{post.author}" src={post.authorImageUrl} />
+			<Image alt="{post.author.name}" src={post.author.imageUrl} />
 		</div>
 		<div class="flex flex-col header-details">
-			<span class="text text-gray-900 font-medium">{post.author}</span>
+			<span class="text text-gray-900 font-medium">{post.author.name}</span>
 			<span class="text-sm text-blue-700"><i class="fas fa-map-marker-alt"></i>{post.location}</span>
 			<span class="text-sm text-gray-900">{dayjs(post.createdAt).fromNow()}</span>
 		</div>

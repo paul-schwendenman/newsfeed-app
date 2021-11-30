@@ -9,7 +9,6 @@
 	export let createdAt;
 	export let text;
 	export let author;
-	export let authorImageUrl;
 	export let likes;
 	export let id;
 
@@ -30,11 +29,11 @@
 
 <div class="flex items-center my-4">
 	<div class="mr-4">
-		<Image src={authorImageUrl} alt={author} />
+		<Image src={author.imageUrl} alt={author.name} />
 	</div>
 	<div class="w-full p-4 bg-gray-300 rounded-lg text-gray-900">
 		<div class="flex justify-between w-full mr-8">
-			<span class="leading-8 font-medium">{author}</span>
+			<span class="leading-8 font-medium">{author.name}</span>
 			<span class="leading-8 text-gray-500">{dayjs(createdAt).fromNow()}</span>
 		</div>
 		<div>
