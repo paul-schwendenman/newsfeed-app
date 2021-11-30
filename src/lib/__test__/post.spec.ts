@@ -1,11 +1,15 @@
 import { render } from "@testing-library/svelte";
 import Post from "../Post.svelte";
-import { PostModel } from "../models";
+import { AuthorModel, PostModel } from "../models";
 
 test("should render", () => {
+  const postAuthor = AuthorModel.build({
+      name: "Gyasi Zardes",
+      imageUrl: "/headshots/zardes_gyasi.png",
+  });
+
   let post = PostModel.build({
-    author: "Gyasi Zardes",
-    authorImageUrl: "/headshots/zardes_gyasi.png",
+    author: postAuthor,
     body: "This is a post",
     createdAt: "2021-11-22 17:50",
     likes: 10

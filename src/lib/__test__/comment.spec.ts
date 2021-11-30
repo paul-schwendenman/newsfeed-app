@@ -1,11 +1,15 @@
 import { render } from "@testing-library/svelte";
 import Comment from "../Comment.svelte";
-import { CommentModel } from "../models";
+import { AuthorModel, CommentModel } from "../models";
 
 test("should render", () => {
-  let comment = CommentModel.build({
-    author: "Gyasi Zardes",
-    authorImageUrl: "/headshots/zardes_gyasi.png",
+  const author = AuthorModel.build({
+    name: "Gyasi Zardes",
+    authorImageUrl: "/headshots/zardes_gyasi.png"
+  });
+
+  const comment = CommentModel.build({
+    author,
     text: "This is a comment",
     createdAt: "2021-11-22 17:50",
     likes: 10
