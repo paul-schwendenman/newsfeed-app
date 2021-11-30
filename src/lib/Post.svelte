@@ -14,8 +14,8 @@
 	const dispatch = createEventDispatcher();
 	let showComments = post.comments.length > 0;
 
-	function like() {
-		dispatch('likePost', { postId: post.id });
+	function action(type) {
+		return (event) => dispatch('postAction', { ...event.detail, type, postId: post.id });
 	}
 
 	function toggleShowComments() {
@@ -49,13 +49,13 @@
 	</div>
 
 	<svelte:fragment slot="footer">
-		<button on:click={like} class="mr-4"><i class="fas fa-heart"></i>Like</button>
+		<button on:click={action('likePost')} class="mr-4"><i class="fas fa-heart"></i>Like</button>
 		<button on:click={toggleShowComments}><i class="fas fa-comment-dots"></i>Comment</button>
 
 		{#if showComments}
 			<div class="mt-4">
-				<CommentForm postId={post.id} on:addComment />
-				<CommentList comments={post.comments} on:likePostComment on:deletePostComment />
+				<CommentForm postId={post.id} on:addComment={action('addPostComment')} />
+				<CommentList comments={post.comments} on:likePostComment={action('likePostComment')} on:deletePostComment={action('deletePostComment')} />
 			</div>
 		{/if}
 	</svelte:fragment>

@@ -25,72 +25,22 @@ function addPost(event) {
 	});
 }
 
-function addComment(event) {
+function doPostAction(event) {
 	const {
-		detail: {
-			author,
-			content: comment,
-			postId
-		}
+		detail
 	} = event;
 
 	posts.dispatch({
-		type: "addPostComment",
-		postId,
-		author,
-		comment
-	});
-}
-
-function likePost(event) {
-	const {
-		detail: {
-			postId
-		}
-	} = event;
-
-	posts.dispatch({
-		type: "likePost",
-		postId
+		...detail
 	})
 }
 
-function likePostComment(event) {
-	const {
-		detail: {
-			postId,
-			id: commentId
-		}
-	} = event;
-
-	posts.dispatch({
-		type: 'likePostComment',
-		postId,
-		commentId
-	});
-}
-
-function deletePostComment(event) {
-	const {
-		detail: {
-			postId,
-			id: commentId
-		}
-	} = event;
-
-	posts.dispatch({
-		type: 'deletePostComment',
-		postId,
-		commentId
-	});
-
-}
 </script>
 
 <div class="p-8">
 	<PostForm on:addPost={addPost} />
 
 	{#each $posts as post}
-		<Post {post} on:addComment={addComment} on:likePost={likePost} on:likePostComment={likePostComment} on:deletePostComment={deletePostComment} />
+		<Post {post} on:postAction={doPostAction} />
 	{/each}
 </div>

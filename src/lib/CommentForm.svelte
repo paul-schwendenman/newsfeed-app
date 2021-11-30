@@ -12,7 +12,7 @@
 	function addComment() {
 		dispatch('addComment', {
 			author,
-			content,
+			comment: content,
 			postId
 		});
 		content = "";

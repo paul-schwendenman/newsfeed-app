@@ -1,7 +1,7 @@
 <script>
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
-	import { createEventDispatcher, getContext } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import Image from "./Image.svelte";
 
 	dayjs.extend(relativeTime);
@@ -13,20 +13,17 @@
 	export let likes;
 	export let id;
 
-	const postId = getContext("postId");
 	const dispatch = createEventDispatcher();
 
 	function likeComment() {
 		dispatch('likePostComment', {
-			postId,
-			id
+			commentId: id
 		})
 	}
 
 	function deleteComment() {
 		dispatch('deletePostComment', {
-			postId,
-			id
+			commentId: id
 		})
 	}
 </script>
