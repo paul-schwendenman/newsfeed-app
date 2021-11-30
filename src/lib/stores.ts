@@ -1,5 +1,17 @@
 import { writable } from 'svelte/store';
+import type { Writable } from 'svelte/store';
 import { PostModel } from './models';
+import type { Post } from './models';
+
+interface Action {
+	type: string;
+}
+
+interface ReduxStore<Type> {
+	subscribe: () => Writable<Type>['subscribe'];
+
+	dispatch: (arg0: Action) => void;
+}
 
 function addPost(state, action) {
 	const { post } = action;
@@ -72,7 +84,7 @@ function postReducer(state, action) {
 	}
 }
 
-function reducible(state, reducer) {
+function reducible<Type>(state, reducer): ReduxStore<Type> {
 	const { update, subscribe } = writable(state);
 
 	function dispatch(action) {
@@ -85,6 +97,6 @@ function reducible(state, reducer) {
 	};
 }
 
-export function postStore(init = []) {
-	return reducible(init, postReducer);
+export function postStore(init: Post[] = []): ReduxStore<Post[]> {
+	return reducible<Post[]>(init, postReducer);
 }

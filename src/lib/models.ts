@@ -13,7 +13,7 @@ interface Comment {
 	createdAt?: Date;
 }
 
-interface Post {
+export declare interface Post {
 	id?: string;
 	author: Author;
 	body: string;
