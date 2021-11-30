@@ -1,16 +1,18 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
 	import Card from './Card.svelte';
 	import Image from './Image.svelte';
+	import type { AuthorModel } from './models';
+	import { Action } from './stores';
 
-	const currentUser = getContext('user');
+	const currentUser: AuthorModel = getContext('user');
 	const dispatch = createEventDispatcher();
 
 	let content = '';
 
 	function post() {
 		dispatch('postAction', {
-			type: 'addPost',
+			type: Action.AddPost,
 			post: {
 				body: content,
 				author: currentUser
@@ -20,8 +22,8 @@
 		content = '';
 	}
 
-	function handleKeydown(event) {
-		if (event.keyCode == 13) {
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Enter') {
 			post();
 		}
 	}

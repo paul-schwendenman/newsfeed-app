@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
 
 	import Image from './Image.svelte';
+	import type { AuthorModel } from './models';
 
-	export let postId;
+	export let postId: string;
 
 	const dispatch = createEventDispatcher();
-	let author = getContext('user');
+	let author: AuthorModel = getContext('user');
 	let content = '';
 
 	function addComment() {
@@ -18,8 +19,8 @@
 		content = '';
 	}
 
-	function handleKeydown(event) {
-		if (event.keyCode == 13) {
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Enter') {
 			addComment();
 		}
 	}

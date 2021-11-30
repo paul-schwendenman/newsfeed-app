@@ -6,16 +6,19 @@
 	import CommentList from './CommentList.svelte';
 	import Image from './Image.svelte';
 	import CommentForm from './CommentForm.svelte';
+	import type { PostModel } from '$lib/models';
+	import { Action } from './stores';
 
 	dayjs.extend(relativeTime);
 
-	export let post;
+	export let post: PostModel;
 
 	const dispatch = createEventDispatcher();
 	let showComments = post.comments.length > 0;
 
-	function action(type) {
-		return (event) => dispatch('postAction', { ...event.detail, type, postId: post.id });
+	function action(type: Action) {
+		return (event: MouseEvent | CustomEvent) =>
+			dispatch('postAction', { ...event.detail, type, postId: post.id });
 	}
 
 	function toggleShowComments() {
@@ -49,16 +52,16 @@
 	</div>
 
 	<svelte:fragment slot="footer">
-		<button on:click={action('likePost')} class="mr-4"><i class="fas fa-heart" />Like</button>
+		<button on:click={action(Action.LikePost)} class="mr-4"><i class="fas fa-heart" />Like</button>
 		<button on:click={toggleShowComments}><i class="fas fa-comment-dots" />Comment</button>
 
 		{#if showComments}
 			<div class="mt-4">
-				<CommentForm postId={post.id} on:addComment={action('addPostComment')} />
+				<CommentForm postId={post.id} on:addComment={action(Action.AddPostComment)} />
 				<CommentList
 					comments={post.comments}
-					on:likePostComment={action('likePostComment')}
-					on:deletePostComment={action('deletePostComment')}
+					on:likePostComment={action(Action.LikePostComment)}
+					on:deletePostComment={action(Action.DeletePostComment)}
 				/>
 			</div>
 		{/if}

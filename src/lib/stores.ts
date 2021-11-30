@@ -1,16 +1,23 @@
 import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
 import { PostModel } from './models';
-import type { Post } from './models';
 
-interface Action {
+export enum Action {
+	AddPost = 'addPost',
+	LikePost = 'likePost',
+	AddPostComment = 'addPostComment',
+	LikePostComment = 'likePostComment',
+	DeletePostComment = 'deletePostComment'
+}
+
+interface ActionEvent {
 	type: string;
 }
 
-interface ReduxStore<Type> {
+export interface ReduxStore<Type> {
 	subscribe: () => Writable<Type>['subscribe'];
 
-	dispatch: (arg0: Action) => void;
+	dispatch: (arg0: ActionEvent) => void;
 }
 
 function addPost(state, action) {
@@ -67,15 +74,15 @@ function addPostComment(state, action) {
 
 function postReducer(state, action) {
 	switch (action.type) {
-		case 'addPost':
+		case Action.AddPost:
 			return addPost(state, action);
-		case 'likePost':
+		case Action.LikePost:
 			return likePost(state, action);
-		case 'addPostComment':
+		case Action.AddPostComment:
 			return addPostComment(state, action);
-		case 'likePostComment':
+		case Action.LikePostComment:
 			return likePostComment(state, action);
-		case 'deletePostComment':
+		case Action.DeletePostComment:
 			return deletePostComment(state, action);
 		default:
 			console.log(`Unknown type: ${action.type}`);
@@ -97,6 +104,6 @@ function reducible<Type>(state, reducer): ReduxStore<Type> {
 	};
 }
 
-export function postStore(init: Post[] = []): ReduxStore<Post[]> {
-	return reducible<Post[]>(init, postReducer);
+export function postStore(init: PostModel[] = []): ReduxStore<PostModel[]> {
+	return reducible<PostModel[]>(init, postReducer);
 }

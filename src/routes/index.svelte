@@ -41,7 +41,7 @@
 		imageUrl: '/headshots/afful_harrison.png'
 	};
 
-	function doPostAction(event) {
+	function doPostAction(event: CustomEvent) {
 		const { detail } = event;
 
 		posts.dispatch({
