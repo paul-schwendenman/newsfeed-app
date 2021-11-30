@@ -16,13 +16,19 @@
 
 		content = "";
 	}
+
+	function handleKeydown(event) {
+		if(event.keyCode == 12) {
+			post();
+		}
+	}
 </script>
 
 <Card>
 	<div class="flex gap-4">
 		<Image src={author.imageUrl} alt={author.name} />
 
-		<input type="text" bind:value={content} placeholder="What is on your mind?" class="w-full leading-loose p-1 focus:outline-none" />
+		<input type="text" bind:value={content} placeholder="What is on your mind?" class="w-full leading-loose p-1 focus:outline-none" on:keydown={handleKeydown} />
 	</div>
 
 	<div slot="footer" class="flex justify-between">
