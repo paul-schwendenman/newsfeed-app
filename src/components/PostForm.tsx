@@ -17,13 +17,27 @@ function PostForm({ addPost }: PostFormProps) {
 			id: crypto.randomUUID(),
 			body
 		});
+		setBody("");
 	}
 
 	return  (
-		<div>
-			<input type="text" placeholder="Post" value={body} onChange={handleChange} />
-			<button onClick={handleSubmit}>Post</button>
+		<>
+		<div className="flex gap-8">
+			<input
+				className="w-full leading-loose p-1 focus:outline-none"
+				type="text"
+				placeholder="What's on your mind?"
+				value={body}
+				onChange={handleChange} />
 		</div>
+		<div className="flex justify-between">
+			<button
+				className="bg-blue-400 rounded text-white px-4 py-2"
+				onClick={handleSubmit}>
+					Post
+				</button>
+		</div>
+		</>
 	)
 
 }

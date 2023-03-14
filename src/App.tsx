@@ -29,7 +29,9 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Feed posts={posts} addPost={addPost}></Feed>
+    <div className='h-full max-w-screen-md mx-auto'>
+      <Feed posts={posts} addPost={addPost}></Feed>
+    </div>
   );
 }
 

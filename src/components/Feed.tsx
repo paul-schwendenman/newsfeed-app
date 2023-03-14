@@ -10,7 +10,7 @@ interface FeedProps {
 
 function Feed({ addPost, posts }: FeedProps) {
 	return (
-		<div>
+		<div className='p-8'>
 			<PostForm addPost={addPost}></PostForm>
 			{ posts?.map(post => (
 				<div key={post.id}>
