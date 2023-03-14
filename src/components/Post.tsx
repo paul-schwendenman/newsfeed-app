@@ -1,5 +1,6 @@
 import React from "react";
 import type { PostType } from "../types/post";
+import Card from "./Card";
 
 interface PostProps {
   post: PostType;
@@ -7,9 +8,9 @@ interface PostProps {
 
 function Post({ post }: PostProps) {
   return (
-    <div>
+    <Card>
       <span>{post.body}</span>
-    </div>
+    </Card>
   );
 }
 

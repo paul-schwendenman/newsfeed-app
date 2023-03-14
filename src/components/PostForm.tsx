@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { PostType } from "../types/post";
+import Card from "./Card";
 
 interface PostFormProps {
   addPost: (post: PostType) => void;
@@ -21,7 +22,18 @@ function PostForm({ addPost }: PostFormProps) {
   }
 
   return (
-    <>
+    <Card
+      footer={
+        <div className="flex justify-between">
+          <button
+            className="bg-blue-400 rounded text-white px-4 py-2"
+            onClick={handleSubmit}
+          >
+            Post
+          </button>
+        </div>
+      }
+    >
       <div className="flex gap-8">
         <input
           className="w-full leading-loose p-1 focus:outline-none"
@@ -31,15 +43,7 @@ function PostForm({ addPost }: PostFormProps) {
           onChange={handleChange}
         />
       </div>
-      <div className="flex justify-between">
-        <button
-          className="bg-blue-400 rounded text-white px-4 py-2"
-          onClick={handleSubmit}
-        >
-          Post
-        </button>
-      </div>
-    </>
+    </Card>
   );
 }
 
