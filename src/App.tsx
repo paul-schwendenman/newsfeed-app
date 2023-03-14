@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import logo from './logo.svg';
-import './App.css';
-import Feed from './components/Feed';
-import { PostType } from './types/post';
+import "./App.css";
+import Feed from "./components/Feed";
+import { PostType } from "./types/post";
 
 function App() {
-  const [posts, setPosts ] = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
 
   function addPost(post: PostType) {
     setPosts([post, ...posts]);
   }
-
 
   return (
     // <div className="App">
@@ -29,7 +28,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div className='h-full max-w-screen-md mx-auto'>
+    <div className="h-full max-w-screen-md mx-auto">
       <Feed posts={posts} addPost={addPost}></Feed>
     </div>
   );
