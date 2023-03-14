@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface CardProps {
-  children: any;
-  footer?: any;
+  children: ReactNode;
+  footer?: ReactNode;
 }
 
 function Card({ children, footer }: CardProps) {
