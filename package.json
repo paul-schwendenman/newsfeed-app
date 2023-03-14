@@ -19,6 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -41,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "^2.8.4",
     "tailwindcss": "^3.2.7"
   }
 }
