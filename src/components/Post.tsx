@@ -12,26 +12,8 @@ interface PostProps {
 
 function Post({ post }: PostProps) {
   return (
-    <div className="post">
-      <Card
-        footer={
-          <div className="flex gap-4">
-            <div>
-              <span className="font-bold">{post.likes}</span> Hypes
-            </div>
-            <div>
-              <span className="font-bold">{post.comments?.length || 0}</span>{" "}
-              Comments
-            </div>
-            <div>
-              <span className="font-bold">{post.shareCount || 0}</span> Shares
-            </div>
-            <div>
-              <span className="font-bold">{post.viewCount || 0}</span> Views
-            </div>
-          </div>
-        }
-      >
+    <Card>
+      <div className="post flex flex-col">
         <div className="flex my-4 gap-4">
           <div className="">
             <div className="w-16 h-16 rounded-full flex justify-center items-center bg-red-600"></div>
@@ -46,8 +28,26 @@ function Post({ post }: PostProps) {
           </div>
         </div>
         <span className="post-body">{post.body}</span>
-      </Card>
-    </div>
+        <div className="flex gap-4 mt-4">
+          <div>
+            <span className="font-bold pr-1">{post.likes}</span>
+            <span className="text-gray-500">Hypes</span>
+          </div>
+          <div>
+            <span className="font-bold pr-1">{post.comments?.length || 0}</span>{" "}
+            <span className="text-gray-500">Comments</span>
+          </div>
+          <div>
+            <span className="font-bold pr-1">{post.shareCount || 0}</span>
+            <span className="text-gray-500">Shares</span>
+          </div>
+          <div>
+            <span className="font-bold pr-1">{post.viewCount || 0}</span>
+            <span className="text-gray-500">Views</span>
+          </div>
+        </div>
+      </div>
+    </Card>
   );
 }
 

@@ -32,36 +32,31 @@ function PostForm({ addPost }: PostFormProps) {
   }
 
   return (
-    <form>
-      <Card
-        footer={
-          <div className="flex justify-between">
-            <div className="flex gap-2">
-              <span className="cursor-pointer">Add media</span>
-              <span className="cursor-pointer">Go live</span>
-            </div>
-            <button
-              className="bg-blue-700 rounded text-white px-4 py-2"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Post
-            </button>
+    <Card>
+      <form className="flex flex-col gap-8">
+        <input
+          className="w-full leading-loose p-1 focus:outline-none border rounded p-2"
+          type="text"
+          placeholder="What's on your mind?"
+          value={body}
+          required={true}
+          onChange={handleChange}
+        />
+        <div className="flex justify-between">
+          <div className="flex gap-2 text-gray-500">
+            <span className="cursor-pointer">Add media</span>
+            <span className="cursor-pointer">Go live</span>
           </div>
-        }
-      >
-        <div className="flex gap-8">
-          <input
-            className="w-full leading-loose p-1 focus:outline-none border rounded p-2"
-            type="text"
-            placeholder="What's on your mind?"
-            value={body}
-            required={true}
-            onChange={handleChange}
-          />
+          <button
+            className="bg-blue-700 rounded text-white px-4 py-2"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Post
+          </button>
         </div>
-      </Card>
-    </form>
+      </form>
+    </Card>
   );
 }
 
