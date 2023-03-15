@@ -6,6 +6,11 @@ import relativeTime from "dayjs/plugin/relativeTime.js";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import { CommentType } from "../types/comment";
+import {
+  ChatBubbleLeftIcon,
+  FireIcon,
+  ShareIcon,
+} from "@heroicons/react/24/outline";
 
 dayjs.extend(relativeTime);
 
@@ -38,19 +43,24 @@ function Post({ post, addCommentToPost }: PostProps) {
         <span className="post-body">{post.body}</span>
         <div className="flex gap-4 mt-4">
           <div>
-            <span className="font-bold pr-1">{post.likes}</span>
+            <FireIcon className="h-6 w-6 inline" />
+            <span className="font-bold p-1">{post.likes}</span>
             <span className="text-gray-500">Hypes</span>
           </div>
           <div>
-            <span className="font-bold pr-1">{post.comments?.length || 0}</span>{" "}
+            <ChatBubbleLeftIcon className="h-6 w-6 inline" />
+            <span className="font-bold p-1">
+              {post.comments?.length || 0}
+            </span>{" "}
             <span className="text-gray-500">Comments</span>
           </div>
           <div>
-            <span className="font-bold pr-1">{post.shareCount || 0}</span>
+            <ShareIcon className="h-6 w-6 inline" />
+            <span className="font-bold p-1">{post.shareCount || 0}</span>
             <span className="text-gray-500">Shares</span>
           </div>
           <div>
-            <span className="font-bold pr-1">{post.viewCount || 0}</span>
+            <span className="font-bold p-1">{post.viewCount || 0}</span>
             <span className="text-gray-500">Views</span>
           </div>
         </div>

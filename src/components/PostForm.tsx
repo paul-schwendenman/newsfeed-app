@@ -1,3 +1,4 @@
+import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
 import React, { ChangeEvent, MouseEvent, useState } from "react";
 import { PostType } from "../types/post";
@@ -42,10 +43,16 @@ function PostForm({ addPost }: PostFormProps) {
           required={true}
           onChange={handleChange}
         />
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <div className="flex gap-2 text-gray-500">
-            <span className="cursor-pointer">Add media</span>
-            <span className="cursor-pointer">Go live</span>
+            <span className="cursor-pointer">
+              <CameraIcon className="h-6 w-6 inline pr-1" />
+              Add media
+            </span>
+            <span className="cursor-pointer">
+              <VideoCameraIcon className="h-6 w-6 inline pr-1" />
+              Go live
+            </span>
           </div>
           <button
             className="bg-blue-700 rounded text-white px-4 py-2"
