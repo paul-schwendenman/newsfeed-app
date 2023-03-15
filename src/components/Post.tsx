@@ -13,7 +13,25 @@ interface PostProps {
 function Post({ post }: PostProps) {
   return (
     <div className="post">
-      <Card>
+      <Card
+        footer={
+          <div className="flex gap-4">
+            <div>
+              <span className="font-bold">{post.likes}</span> Hypes
+            </div>
+            <div>
+              <span className="font-bold">{post.comments?.length || 0}</span>{" "}
+              Comments
+            </div>
+            <div>
+              <span className="font-bold">{post.shareCount || 0}</span> Shares
+            </div>
+            <div>
+              <span className="font-bold">{post.viewCount || 0}</span> Views
+            </div>
+          </div>
+        }
+      >
         <div className="flex my-4 gap-4">
           <div className="">
             <div className="w-16 h-16 rounded-full flex justify-center items-center bg-red-600"></div>

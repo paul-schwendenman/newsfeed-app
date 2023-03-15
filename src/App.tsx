@@ -13,6 +13,9 @@ function App() {
         name: "Nickmercs",
       },
       createdAt: "2023-03-15 11:50",
+      likes: 0,
+      shareCount: 12,
+      viewCount: 100,
     },
   ]);
 

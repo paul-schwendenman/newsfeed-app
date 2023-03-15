@@ -25,6 +25,7 @@ function PostForm({ addPost }: PostFormProps) {
           name: "Tim",
         },
         createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+        likes: 0,
       });
       setBody("");
     }
