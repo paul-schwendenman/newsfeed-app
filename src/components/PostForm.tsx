@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useState } from "react";
 import { PostType } from "../types/post";
 import Card from "./Card";
 
@@ -13,37 +13,45 @@ function PostForm({ addPost }: PostFormProps) {
     setBody(event.target.value);
   }
 
-  function handleSubmit() {
-    addPost({
-      id: crypto.randomUUID(),
-      body,
-    });
-    setBody("");
+  function handleSubmit(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+    if (body) {
+      addPost({
+        id: crypto.randomUUID(),
+        body,
+      });
+      setBody("");
+    }
   }
 
   return (
-    <Card
-      footer={
-        <div className="flex justify-between">
-          <button
-            className="bg-blue-400 rounded text-white px-4 py-2"
-            onClick={handleSubmit}
-          >
-            Post
-          </button>
+    <form>
+      <Card
+        footer={
+          <div className="flex justify-between">
+            <button
+              className="bg-blue-400 rounded text-white px-4 py-2"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Post
+            </button>
+          </div>
+        }
+      >
+        <div className="flex gap-8">
+          <input
+            className="w-full leading-loose p-1 focus:outline-none"
+            type="text"
+            placeholder="What's on your mind?"
+            value={body}
+            required={true}
+            onChange={handleChange}
+          />
         </div>
-      }
-    >
-      <div className="flex gap-8">
-        <input
-          className="w-full leading-loose p-1 focus:outline-none"
-          type="text"
-          placeholder="What's on your mind?"
-          value={body}
-          onChange={handleChange}
-        />
-      </div>
-    </Card>
+      </Card>
+    </form>
   );
 }
 
