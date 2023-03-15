@@ -1,9 +1,11 @@
+import { AuthorType } from "./author";
+
 export interface PostType {
   id: string;
-  // author: Author;
+  author: AuthorType;
   body: string;
   // location?: string;
-  // createdAt?: Date;
+  createdAt: string;
   // likes?: number;
   // comments?: Comment[];
 }
