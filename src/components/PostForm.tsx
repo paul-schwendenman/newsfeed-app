@@ -31,7 +31,7 @@ function PostForm({ addPost }: PostFormProps) {
         footer={
           <div className="flex justify-between">
             <button
-              className="bg-blue-400 rounded text-white px-4 py-2"
+              className="bg-blue-700 rounded text-white px-4 py-2"
               type="submit"
               onClick={handleSubmit}
             >

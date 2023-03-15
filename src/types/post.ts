@@ -1,5 +1,5 @@
 export interface PostType {
-  id?: string;
+  id: string;
   // author: Author;
   body: string;
   // location?: string;

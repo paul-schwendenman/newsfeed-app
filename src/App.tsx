@@ -5,7 +5,12 @@ import Feed from "./components/Feed";
 import { PostType } from "./types/post";
 
 function App() {
-  const [posts, setPosts] = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([
+    {
+      id: "6c9df76e-eed4-4b51-a9d3-77d3d17e7a9b",
+      body: "Donec ullamcorper nulla non metus auctor fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis.",
+    },
+  ]);
 
   function addPost(post: PostType) {
     setPosts([post, ...posts]);
