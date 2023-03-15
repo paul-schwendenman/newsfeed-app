@@ -9,7 +9,7 @@ interface PostProps {
 function Post({ post }: PostProps) {
   return (
     <Card>
-      <span>{post.body}</span>
+      <span className="post-body">{post.body}</span>
     </Card>
   );
 }

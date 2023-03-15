@@ -28,7 +28,7 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div className="h-full max-w-screen-md mx-auto">
+    <div id="app" className="h-full max-w-screen-md mx-auto">
       <Feed posts={posts} addPost={addPost}></Feed>
     </div>
   );

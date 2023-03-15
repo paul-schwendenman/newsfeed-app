@@ -25,7 +25,8 @@
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "e2e": "playwright test"
   },
   "eslintConfig": {
     "extends": [
