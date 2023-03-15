@@ -36,7 +36,7 @@ function CommentForm({ addComment }: CommentFormProps) {
 
   return (
     <form className="flex justify-between bg-gray-300 rounded-full p-2 mt-4">
-      <ChatBubbleLeftIcon className="h-6 w-6 inline" />
+      <ChatBubbleLeftIcon className="h-6 w-6 inline text-gray-700" />
 
       <input
         className="focus:outline-none bg-inherit grow placeholder:text-gray-700 ml-4"
