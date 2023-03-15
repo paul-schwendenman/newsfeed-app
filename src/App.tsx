@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import Feed from "./components/Feed";
+import { CommentType } from "./types/comment";
 import { PostType } from "./types/post";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             name: "Ann",
           },
           createdAt: "2023-03-14 14:56",
+          likes: 0,
         },
       ],
     },
@@ -41,6 +43,20 @@ function App() {
 
   function addPost(post: PostType) {
     setPosts([post, ...posts]);
+  }
+
+  function addCommentToPost(comment: CommentType, postId: string) {
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          post.comments = [comment, ...(post.comments || [])];
+
+          return post;
+        } else {
+          return post;
+        }
+      })
+    );
   }
 
   return (
@@ -61,7 +77,11 @@ function App() {
     //   </header>
     // </div>
     <div id="app" className="h-full max-w-screen-md mx-auto">
-      <Feed posts={posts} addPost={addPost}></Feed>
+      <Feed
+        posts={posts}
+        addPost={addPost}
+        addCommentToPost={addCommentToPost}
+      ></Feed>
     </div>
   );
 }

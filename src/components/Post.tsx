@@ -4,14 +4,21 @@ import Card from "./Card";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import Comment from "./Comment";
+import CommentForm from "./CommentForm";
+import { CommentType } from "../types/comment";
 
 dayjs.extend(relativeTime);
 
 interface PostProps {
   post: PostType;
+  addCommentToPost: (comment: CommentType, postId: string) => void;
 }
 
-function Post({ post }: PostProps) {
+function Post({ post, addCommentToPost }: PostProps) {
+  function handleAddComment(comment: CommentType) {
+    addCommentToPost(comment, post.id);
+  }
+
   return (
     <Card>
       <div className="post flex flex-col mb-4">
@@ -47,15 +54,14 @@ function Post({ post }: PostProps) {
             <span className="text-gray-500">Views</span>
           </div>
         </div>
+        <div>
+          <CommentForm addComment={handleAddComment}></CommentForm>
+        </div>
       </div>
 
-      {post.comments && (
-        <div className="comments">
-          {post.comments?.map((comment) => (
-            <Comment key={comment.id} comment={comment}></Comment>
-          ))}
-        </div>
-      )}
+      {post.comments?.map((comment) => (
+        <Comment key={comment.id} comment={comment}></Comment>
+      ))}
     </Card>
   );
 }

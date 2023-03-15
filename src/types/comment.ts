@@ -5,7 +5,7 @@ export interface CommentType {
   body: string;
   author: AuthorType;
   createdAt: string;
-  likes?: number;
+  likes: number;
   shareCount?: number;
   replies?: CommentType[];
 }

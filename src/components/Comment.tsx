@@ -22,7 +22,21 @@ export default function Comment({ comment }: CommentProps) {
         </div>
       </div>
 
-      <div>{comment.body}</div>
+      <div className="pt-4">{comment.body}</div>
+      <div className="flex gap-4 mt-4">
+        <div>
+          <span className="font-bold pr-1">{comment.likes}</span>
+          <span className="text-gray-500">Hypes</span>
+        </div>
+        <div>
+          <span className="font-bold pr-1">{comment.replies?.length || 0}</span>{" "}
+          <span className="text-gray-500">Replies</span>
+        </div>
+        <div>
+          <span className="font-bold pr-1">{comment.shareCount || 0}</span>
+          <span className="text-gray-500">Shares</span>
+        </div>
+      </div>
     </div>
   );
 }
