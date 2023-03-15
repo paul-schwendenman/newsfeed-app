@@ -17,6 +17,26 @@ function App() {
       shareCount: 12,
       viewCount: 100,
     },
+    {
+      id: "9a478b7e-4030-4fc9-bcf8-7bd9e6cf5865",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      author: {
+        name: "Dan",
+      },
+      createdAt: "2023-03-14 13:12",
+      likes: 24,
+      viewCount: 50,
+      comments: [
+        {
+          id: "c393b8f0-ed73-4201-9be7-94f7a2b9d1ff",
+          body: "Duis aute irure dolor in reprehenderit in voluptate velit.",
+          author: {
+            name: "Ann",
+          },
+          createdAt: "2023-03-14 14:56",
+        },
+      ],
+    },
   ]);
 
   function addPost(post: PostType) {

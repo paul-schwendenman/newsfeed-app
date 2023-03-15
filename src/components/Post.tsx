@@ -3,6 +3,7 @@ import type { PostType } from "../types/post";
 import Card from "./Card";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
+import Comment from "./Comment";
 
 dayjs.extend(relativeTime);
 
@@ -13,7 +14,7 @@ interface PostProps {
 function Post({ post }: PostProps) {
   return (
     <Card>
-      <div className="post flex flex-col">
+      <div className="post flex flex-col mb-4">
         <div className="flex my-4 gap-4">
           <div className="">
             <div className="w-16 h-16 rounded-full flex justify-center items-center bg-red-600"></div>
@@ -47,6 +48,14 @@ function Post({ post }: PostProps) {
           </div>
         </div>
       </div>
+
+      {post.comments && (
+        <div className="comments">
+          {post.comments?.map((comment) => (
+            <Comment key={comment.id} comment={comment}></Comment>
+          ))}
+        </div>
+      )}
     </Card>
   );
 }
