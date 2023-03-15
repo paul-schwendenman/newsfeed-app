@@ -41,27 +41,29 @@ function Post({ post, addCommentToPost }: PostProps) {
           </div>
         </div>
         <span className="post-body">{post.body}</span>
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-4 md:justify-start justify-between">
           <div>
-            <FireIcon className="h-6 w-6 inline" />
-            <span className="font-bold p-1">{post.likes}</span>
-            <span className="text-gray-500">Hypes</span>
+            <FireIcon className="h-4 w-4 inline" />
+            <span className="text-xs font-bold p-1">{post.likes}</span>
+            <span className="text-2xs text-gray-500">Hypes</span>
           </div>
           <div>
-            <ChatBubbleLeftIcon className="h-6 w-6 inline" />
-            <span className="font-bold p-1">
+            <ChatBubbleLeftIcon className="h-4 w-4 inline" />
+            <span className="text-xs font-bold p-1">
               {post.comments?.length || 0}
             </span>{" "}
-            <span className="text-gray-500">Comments</span>
+            <span className="text-2xs text-gray-500">Comments</span>
           </div>
           <div>
-            <ShareIcon className="h-6 w-6 inline" />
-            <span className="font-bold p-1">{post.shareCount || 0}</span>
-            <span className="text-gray-500">Shares</span>
+            <ShareIcon className="h-4 w-4 inline" />
+            <span className="text-xs font-bold p-1">
+              {post.shareCount || 0}
+            </span>
+            <span className="text-xs text-gray-500">Shares</span>
           </div>
           <div>
-            <span className="font-bold p-1">{post.viewCount || 0}</span>
-            <span className="text-gray-500">Views</span>
+            <span className="text-xs font-bold p-1">{post.viewCount || 0}</span>
+            <span className="text-2xs text-gray-500">Views</span>
           </div>
         </div>
         <div>

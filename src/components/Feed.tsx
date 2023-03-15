@@ -12,7 +12,7 @@ interface FeedProps {
 
 function Feed({ addPost, addCommentToPost, posts }: FeedProps) {
   return (
-    <div className="p-8">
+    <div className="p-2 md:p-8">
       <PostForm addPost={addPost}></PostForm>
       {posts?.map((post) => (
         <div key={post.id}>

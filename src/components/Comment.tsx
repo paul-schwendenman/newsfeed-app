@@ -28,23 +28,25 @@ export default function Comment({ comment }: CommentProps) {
       </div>
 
       <div className="pt-4">{comment.body}</div>
-      <div className="flex gap-4 mt-4">
+      <div className="flex gap-4 mt-4 justify-around md:justify-start">
         <div>
-          <FireIcon className="h-6 w-6 inline" />
-          <span className="font-bold p-1">{comment.likes}</span>
-          <span className="text-gray-500">Hypes</span>
+          <FireIcon className="h-4 w-4 inline" />
+          <span className="text-xs font-bold p-1">{comment.likes}</span>
+          <span className="text-2xs text-gray-500">Hypes</span>
         </div>
         <div>
-          <ChatBubbleLeftIcon className="h-6 w-6 inline" />
-          <span className="font-bold p-1">
+          <ChatBubbleLeftIcon className="h-4 w-4 inline" />
+          <span className="text-xs font-bold p-1">
             {comment.replies?.length || 0}
           </span>{" "}
-          <span className="text-gray-500">Replies</span>
+          <span className="text-2xs text-gray-500">Replies</span>
         </div>
         <div>
-          <ShareIcon className="h-6 w-6 inline" />
-          <span className="font-bold p-1">{comment.shareCount || 0}</span>
-          <span className="text-gray-500">Shares</span>
+          <ShareIcon className="h-4 w-4 inline" />
+          <span className="text-xs font-bold p-1">
+            {comment.shareCount || 0}
+          </span>
+          <span className="text-2xs text-gray-500">Shares</span>
         </div>
       </div>
     </div>
