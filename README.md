@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting Started with Paul's React Newsfeed app
 
 ## Available Scripts
 
@@ -19,6 +17,10 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run e2e`
+
+Launches the e2e test runner. I have found playwrite to be a little flaky, but I expect these to pass on my machine. Sometimes I have to step through them in debug mode.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -29,42 +31,14 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Details
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+My code coverage is really low, although this is a simple project. I would like to increase the unit coverage substaintially.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I would also like to play around more with the end-to-end tests. I have found this tool to be much faster than other tools and I've really like messing with it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The UI matches the Figma pretty well but there are some things that I didn't quite understand what it was suggesting. In real life, those would have become conversations with a designer, but for this I just guessed or skipped the extra bits. I didn't match the colors pixel perfect because I choose to pretend that we had a style guide that I just used. Matching the colors down to the hex could be done but the code would look slightly messier.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+There are a few user controls that are suggesting further avaiable functionality, that could be extended next. Personally, I'd probably add the ability to reply to a comment next as nested comments always feels like a fun problem.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+While fun, I do feel like the scope of the project is quite large for a work sample and it's hard to figure out what all is best to showcase.
