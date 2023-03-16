@@ -28,11 +28,12 @@ function addPostComment(state: AppStateType, action: PostEvent) {
   const { postId, comment } = action;
 
   const posts = state.posts.map((post) => {
+    let comments = post.comments || [];
     if (post.id === postId && comment) {
-      post.comments = [comment, ...(post.comments || [])];
+      comments = [comment, ...comments];
     }
 
-    return post;
+    return { ...post, comments };
   });
 
   return { ...state, posts };
