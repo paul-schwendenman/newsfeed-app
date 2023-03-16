@@ -38,6 +38,9 @@ const state: AppStateType = {
       ],
     },
   ],
+  user: {
+    name: "Paul S",
+  },
 };
 
 export default state;

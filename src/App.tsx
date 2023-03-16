@@ -4,6 +4,7 @@ import "./App.css";
 import Feed from "./components/Feed";
 import postReducer, { PostReducerType } from "./reducers/postReducer";
 import initialState from "./initialState";
+import { UserContext } from "./contexts/user";
 
 function App() {
   const [state, dispatch] = useReducer<PostReducerType>(
@@ -28,9 +29,11 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div id="app" className="h-full max-w-screen-md mx-auto">
-      <Feed posts={state.posts} dispatch={dispatch}></Feed>
-    </div>
+    <UserContext.Provider value={state.user}>
+      <div id="app" className="h-full max-w-screen-md mx-auto">
+        <Feed posts={state.posts} dispatch={dispatch}></Feed>
+      </div>
+    </UserContext.Provider>
   );
 }
 

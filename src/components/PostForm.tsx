@@ -1,5 +1,12 @@
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
-import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  MouseEvent,
+  useContext,
+  useState,
+} from "react";
+import { UserContext } from "../contexts/user";
 import { PostAction, PostEvent } from "../reducers/postReducer";
 import { buildPost } from "../types/post";
 import Card from "./Card";
@@ -10,6 +17,7 @@ interface PostFormProps {
 
 function PostForm({ dispatch }: PostFormProps) {
   const [body, setBody] = useState("");
+  const user = useContext(UserContext);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
     setBody(event.target.value);
@@ -23,9 +31,7 @@ function PostForm({ dispatch }: PostFormProps) {
         type: PostAction.AddPost,
         post: buildPost({
           body,
-          author: {
-            name: "Tim",
-          },
+          author: user,
         }),
       });
       setBody("");
