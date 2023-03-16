@@ -2,9 +2,8 @@ import {
   ChatBubbleLeftIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import dayjs from "dayjs";
 import { ChangeEvent, MouseEvent, useState } from "react";
-import { CommentType } from "../types/comment";
+import { buildComment, CommentType } from "../types/comment";
 
 interface CommentFormProps {
   addComment: (comment: CommentType) => void;
@@ -21,15 +20,14 @@ function CommentForm({ addComment }: CommentFormProps) {
     event.preventDefault();
 
     if (body) {
-      addComment({
-        id: crypto.randomUUID(),
-        body,
-        author: {
-          name: "Tim",
-        },
-        createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-        likes: 0,
-      });
+      addComment(
+        buildComment({
+          body,
+          author: {
+            name: "Tim",
+          },
+        })
+      );
       setBody("");
     }
   }

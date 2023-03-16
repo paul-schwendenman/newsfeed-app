@@ -9,8 +9,8 @@ export enum PostAction {
 
 export interface PostEvent {
   type: PostAction;
-  postId?: string;
   post?: PostType;
+  postId?: string;
   comment?: CommentType;
 }
 

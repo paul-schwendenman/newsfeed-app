@@ -1,7 +1,7 @@
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
-import dayjs from "dayjs";
 import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
 import { PostAction, PostEvent } from "../reducers/postReducer";
+import { buildPost } from "../types/post";
 import Card from "./Card";
 
 interface PostFormProps {
@@ -21,15 +21,12 @@ function PostForm({ dispatch }: PostFormProps) {
     if (body) {
       dispatch({
         type: PostAction.AddPost,
-        post: {
-          id: crypto.randomUUID(),
+        post: buildPost({
           body,
           author: {
             name: "Tim",
           },
-          createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-          likes: 0,
-        },
+        }),
       });
       setBody("");
     }
