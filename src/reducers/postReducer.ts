@@ -16,7 +16,10 @@ export interface PostEvent {
 
 function addPost(state: AppStateType, action: PostEvent) {
   const { post } = action;
-  const posts = [post, ...state.posts];
+  let posts = state.posts;
+  if (post) {
+    posts = [post, ...posts];
+  }
 
   return { ...state, posts };
 }
@@ -35,7 +38,7 @@ function addPostComment(state: AppStateType, action: PostEvent) {
   return { ...state, posts };
 }
 
-function postReducer(state: AppStateType, action: PostEvent) {
+function postReducer(state: AppStateType, action: PostEvent): AppStateType {
   switch (action.type) {
     case PostAction.AddPost:
       return addPost(state, action);
@@ -47,5 +50,10 @@ function postReducer(state: AppStateType, action: PostEvent) {
       return state;
   }
 }
+
+export type PostReducerType = (
+  state: AppStateType,
+  action: PostEvent
+) => AppStateType;
 
 export default postReducer;

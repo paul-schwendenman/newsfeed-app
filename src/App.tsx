@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useReducer } from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import Feed from "./components/Feed";
-import useReducer from "./hooks/useReducer";
-import postReducer, { PostAction, PostEvent } from "./reducers/postReducer";
-import { AppStateType } from "./types/appState";
+import postReducer, {
+  PostAction,
+  PostReducerType,
+} from "./reducers/postReducer";
 import { CommentType } from "./types/comment";
 import { PostType } from "./types/post";
 import initialState from "./initialState";
 
 function App() {
-  const [state, dispatch] = useReducer<AppStateType, PostEvent>(
+  const [state, dispatch] = useReducer<PostReducerType>(
     postReducer,
     initialState
   );
