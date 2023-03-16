@@ -10,7 +10,7 @@ import {
   FireIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
-import { PostEvent } from "../reducers/postReducer";
+import { PostAction, PostEvent } from "../reducers/postReducer";
 
 dayjs.extend(relativeTime);
 
@@ -20,6 +20,13 @@ interface PostProps {
 }
 
 function Post({ post, dispatch }: PostProps) {
+  function handleLikePost() {
+    dispatch({
+      type: PostAction.LikePost,
+      postId: post.id,
+    });
+  }
+
   return (
     <Card>
       <div className="post flex flex-col mb-4">
@@ -39,7 +46,12 @@ function Post({ post, dispatch }: PostProps) {
         <span className="post-body">{post.body}</span>
         <div className="flex gap-4 mt-4 md:justify-start justify-between">
           <div>
-            <FireIcon className="h-4 w-4 inline" />
+            <FireIcon
+              className={`h-4 w-4 inline cursor-pointer ${
+                post.likedByUser && "text-orange-600"
+              }`}
+              onClick={handleLikePost}
+            />
             <span className="text-xs font-bold p-1">{post.likes}</span>
             <span className="text-2xs text-gray-500">Hypes</span>
           </div>

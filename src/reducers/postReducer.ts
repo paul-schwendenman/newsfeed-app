@@ -4,6 +4,7 @@ import { PostType } from "../types/post";
 
 export enum PostAction {
   AddPost = "addPost",
+  LikePost = "likePost",
   AddPostComment = "addPostComment",
 }
 
@@ -16,13 +17,18 @@ interface AddPostEvent extends BasePostEvent {
   post: PostType;
 }
 
+interface LikePostEvent extends BasePostEvent {
+  type: PostAction.LikePost;
+  postId: string;
+}
+
 interface AddPostCommentEvent extends BasePostEvent {
   type: PostAction.AddPostComment;
   postId: string;
   comment: CommentType;
 }
 
-export type PostEvent = AddPostEvent | AddPostCommentEvent;
+export type PostEvent = AddPostEvent | LikePostEvent | AddPostCommentEvent;
 
 function addPost(state: AppStateType, action: AddPostEvent) {
   const { post } = action;
@@ -49,12 +55,36 @@ function addPostComment(state: AppStateType, action: AddPostCommentEvent) {
   return { ...state, posts };
 }
 
+function likePost(state: AppStateType, action: LikePostEvent) {
+  const { postId } = action;
+
+  const posts = state.posts.map((post) => {
+    let likes = post.likes;
+    let likedByUser = post.likedByUser;
+
+    if (post.id === postId) {
+      if (likedByUser) {
+        likes--;
+      } else {
+        likes++;
+      }
+      likedByUser = !likedByUser;
+    }
+
+    return { ...post, likes, likedByUser };
+  });
+
+  return { ...state, posts };
+}
+
 function postReducer(state: AppStateType, action: PostEvent): AppStateType {
   switch (action.type) {
     case PostAction.AddPost:
       return addPost(state, action);
     case PostAction.AddPostComment:
       return addPostComment(state, action);
+    case PostAction.LikePost:
+      return likePost(state, action);
   }
 }
 

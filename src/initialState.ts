@@ -10,6 +10,7 @@ const state = {
       likes: 0,
       shareCount: 12,
       viewCount: 100,
+      likedByUser: false,
     },
     {
       id: "9a478b7e-4030-4fc9-bcf8-7bd9e6cf5865",
@@ -20,6 +21,7 @@ const state = {
       createdAt: "2023-03-14 13:12",
       likes: 24,
       viewCount: 50,
+      likedByUser: false,
       comments: [
         {
           id: "c393b8f0-ed73-4201-9be7-94f7a2b9d1ff",

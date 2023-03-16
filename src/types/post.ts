@@ -12,11 +12,18 @@ export interface PostType {
   comments?: CommentType[];
   shareCount?: number;
   viewCount?: number;
+  likedByUser: boolean;
 }
 
 type OptionalPost = WithOptional<
   PostType,
-  "id" | "createdAt" | "likes" | "shareCount" | "viewCount" | "comments"
+  | "id"
+  | "createdAt"
+  | "likes"
+  | "shareCount"
+  | "viewCount"
+  | "comments"
+  | "likedByUser"
 >;
 
 export function buildPost(partial: OptionalPost): PostType {
@@ -27,6 +34,7 @@ export function buildPost(partial: OptionalPost): PostType {
     comments: [],
     shareCount: 0,
     viewCount: 0,
+    likedByUser: false,
     ...partial,
   };
 }
