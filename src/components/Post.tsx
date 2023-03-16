@@ -45,16 +45,15 @@ function Post({ post, dispatch }: PostProps) {
         </div>
         <span className="post-body">{post.body}</span>
         <div className="flex gap-4 mt-4 md:justify-start justify-between">
-          <div>
+          <button onClick={handleLikePost} title="Hype Post">
             <FireIcon
-              className={`h-4 w-4 inline cursor-pointer ${
+              className={`h-4 w-4 inline ${
                 post.likedByUser && "text-orange-600"
               }`}
-              onClick={handleLikePost}
             />
             <span className="text-xs font-bold p-1">{post.likes}</span>
             <span className="text-2xs text-gray-500">Hypes</span>
-          </div>
+          </button>
           <div>
             <ChatBubbleLeftIcon className="h-4 w-4 inline" />
             <span className="text-xs font-bold p-1">

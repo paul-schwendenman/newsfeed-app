@@ -30,4 +30,21 @@ test.describe("post", () => {
       expect(content).toHaveText("This is a post");
     });
   });
+
+  test.describe("like a post", () => {
+    test("liking a post", async ({ page }) => {
+      const button = await page
+        .getByRole("button")
+        .filter({ hasText: "Hype" })
+        .nth(0);
+
+      await button.click();
+
+      expect(await button).toHaveText("1Hypes");
+
+      await button.click();
+
+      expect(await button).toHaveText("0Hypes");
+    });
+  });
 });
