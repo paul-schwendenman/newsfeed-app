@@ -1,3 +1,4 @@
+import { AppStateType } from "../types/appState";
 import { CommentType } from "../types/comment";
 import { PostType } from "../types/post";
 
@@ -6,34 +7,35 @@ export enum PostAction {
   AddPostComment = "addPostComment",
 }
 
-interface Event {
+export interface PostEvent {
   type: PostAction;
   postId?: string;
   post?: PostType;
   comment?: CommentType;
 }
 
-type State = PostType[];
-
-function addPost(state: State, action: Event) {
+function addPost(state: AppStateType, action: PostEvent) {
   const { post } = action;
+  const posts = [post, ...state.posts];
 
-  return [post, ...state];
+  return { ...state, posts };
 }
 
-function addPostComment(state: State, action: Event) {
+function addPostComment(state: AppStateType, action: PostEvent) {
   const { postId, comment } = action;
 
-  return state.map((post) => {
-    if (post.id == postId && comment) {
+  const posts = state.posts.map((post) => {
+    if (post.id === postId && comment) {
       post.comments = [comment, ...(post.comments || [])];
     }
 
     return post;
   });
+
+  return { ...state, posts };
 }
 
-function postReducer(state: State, action: Event) {
+function postReducer(state: AppStateType, action: PostEvent) {
   switch (action.type) {
     case PostAction.AddPost:
       return addPost(state, action);
