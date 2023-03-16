@@ -5,13 +5,12 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
-import { CommentType } from "../types/comment";
 import {
   ChatBubbleLeftIcon,
   FireIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
-import { PostAction, PostEvent } from "../reducers/postReducer";
+import { PostEvent } from "../reducers/postReducer";
 
 dayjs.extend(relativeTime);
 
@@ -21,14 +20,6 @@ interface PostProps {
 }
 
 function Post({ post, dispatch }: PostProps) {
-  function handleAddComment(comment: CommentType) {
-    dispatch({
-      type: PostAction.AddPostComment,
-      comment,
-      postId: post.id,
-    });
-  }
-
   return (
     <Card>
       <div className="post flex flex-col mb-4">
@@ -72,7 +63,7 @@ function Post({ post, dispatch }: PostProps) {
           </div>
         </div>
         <div>
-          <CommentForm addComment={handleAddComment}></CommentForm>
+          <CommentForm dispatch={dispatch} postId={post.id}></CommentForm>
         </div>
       </div>
 

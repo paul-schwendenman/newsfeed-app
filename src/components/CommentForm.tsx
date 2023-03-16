@@ -2,14 +2,16 @@ import {
   ChatBubbleLeftIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { ChangeEvent, MouseEvent, useState } from "react";
-import { buildComment, CommentType } from "../types/comment";
+import { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import { PostAction, PostEvent } from "../reducers/postReducer";
+import { buildComment } from "../types/comment";
 
 interface CommentFormProps {
-  addComment: (comment: CommentType) => void;
+  dispatch: Dispatch<PostEvent>;
+  postId: string;
 }
 
-function CommentForm({ addComment }: CommentFormProps) {
+function CommentForm({ dispatch, postId }: CommentFormProps) {
   const [body, setBody] = useState("");
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -20,14 +22,17 @@ function CommentForm({ addComment }: CommentFormProps) {
     event.preventDefault();
 
     if (body) {
-      addComment(
-        buildComment({
-          body,
-          author: {
-            name: "Tim",
-          },
-        })
-      );
+      const comment = buildComment({
+        author: {
+          name: "Tim",
+        },
+        body,
+      });
+      dispatch({
+        type: PostAction.AddPostComment,
+        postId,
+        comment,
+      });
       setBody("");
     }
   }
