@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime.js";
 import { CommentType } from "../types/comment";
 import {
   ChatBubbleLeftIcon,
@@ -7,6 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { Dispatch } from "react";
 import { PostAction, PostEvent } from "../reducers/postReducer";
+
+dayjs.extend(relativeTime);
 
 interface CommentProps {
   dispatch: Dispatch<PostEvent>;
