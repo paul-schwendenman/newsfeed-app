@@ -7,14 +7,24 @@ export enum PostAction {
   AddPostComment = "addPostComment",
 }
 
-export interface PostEvent {
+export interface BasePostEvent {
   type: PostAction;
-  post?: PostType;
-  postId?: string;
-  comment?: CommentType;
 }
 
-function addPost(state: AppStateType, action: PostEvent) {
+interface AddPostEvent extends BasePostEvent {
+  type: PostAction.AddPost;
+  post: PostType;
+}
+
+interface AddPostCommentEvent extends BasePostEvent {
+  type: PostAction.AddPostComment;
+  postId: string;
+  comment: CommentType;
+}
+
+export type PostEvent = AddPostEvent | AddPostCommentEvent;
+
+function addPost(state: AppStateType, action: AddPostEvent) {
   const { post } = action;
   let posts = state.posts;
   if (post) {
@@ -24,7 +34,7 @@ function addPost(state: AppStateType, action: PostEvent) {
   return { ...state, posts };
 }
 
-function addPostComment(state: AppStateType, action: PostEvent) {
+function addPostComment(state: AppStateType, action: AddPostCommentEvent) {
   const { postId, comment } = action;
 
   const posts = state.posts.map((post) => {
@@ -45,10 +55,6 @@ function postReducer(state: AppStateType, action: PostEvent): AppStateType {
       return addPost(state, action);
     case PostAction.AddPostComment:
       return addPostComment(state, action);
-    default:
-      console.log(`Unknown type: ${action.type}`);
-
-      return state;
   }
 }
 
