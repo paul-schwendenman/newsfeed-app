@@ -1,14 +1,14 @@
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
-import React, { ChangeEvent, MouseEvent, useState } from "react";
-import { PostType } from "../types/post";
+import React, { ChangeEvent, Dispatch, MouseEvent, useState } from "react";
+import { PostAction, PostEvent } from "../reducers/postReducer";
 import Card from "./Card";
 
 interface PostFormProps {
-  addPost: (post: PostType) => void;
+  dispatch: Dispatch<PostEvent>;
 }
 
-function PostForm({ addPost }: PostFormProps) {
+function PostForm({ dispatch }: PostFormProps) {
   const [body, setBody] = useState("");
 
   function handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -19,14 +19,17 @@ function PostForm({ addPost }: PostFormProps) {
     event.preventDefault();
 
     if (body) {
-      addPost({
-        id: crypto.randomUUID(),
-        body,
-        author: {
-          name: "Tim",
+      dispatch({
+        type: PostAction.AddPost,
+        post: {
+          id: crypto.randomUUID(),
+          body,
+          author: {
+            name: "Tim",
+          },
+          createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
+          likes: 0,
         },
-        createdAt: dayjs().format("YYYY-MM-DD HH:mm:ss"),
-        likes: 0,
       });
       setBody("");
     }

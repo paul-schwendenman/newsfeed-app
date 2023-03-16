@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import type { PostType } from "../types/post";
 import Card from "./Card";
 import dayjs from "dayjs";
@@ -11,17 +11,22 @@ import {
   FireIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
+import { PostAction, PostEvent } from "../reducers/postReducer";
 
 dayjs.extend(relativeTime);
 
 interface PostProps {
   post: PostType;
-  addCommentToPost: (comment: CommentType, postId: string) => void;
+  dispatch: Dispatch<PostEvent>;
 }
 
-function Post({ post, addCommentToPost }: PostProps) {
+function Post({ post, dispatch }: PostProps) {
   function handleAddComment(comment: CommentType) {
-    addCommentToPost(comment, post.id);
+    dispatch({
+      type: PostAction.AddPostComment,
+      comment,
+      postId: post.id,
+    });
   }
 
   return (

@@ -2,12 +2,7 @@ import React, { useReducer } from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import Feed from "./components/Feed";
-import postReducer, {
-  PostAction,
-  PostReducerType,
-} from "./reducers/postReducer";
-import { CommentType } from "./types/comment";
-import { PostType } from "./types/post";
+import postReducer, { PostReducerType } from "./reducers/postReducer";
 import initialState from "./initialState";
 
 function App() {
@@ -15,14 +10,6 @@ function App() {
     postReducer,
     initialState
   );
-
-  function addPost(post: PostType) {
-    dispatch({ type: PostAction.AddPost, post });
-  }
-
-  function addCommentToPost(comment: CommentType, postId: string) {
-    dispatch({ type: PostAction.AddPostComment, comment, postId });
-  }
 
   return (
     // <div className="App">
@@ -42,11 +29,7 @@ function App() {
     //   </header>
     // </div>
     <div id="app" className="h-full max-w-screen-md mx-auto">
-      <Feed
-        posts={state.posts}
-        addPost={addPost}
-        addCommentToPost={addCommentToPost}
-      ></Feed>
+      <Feed posts={state.posts} dispatch={dispatch}></Feed>
     </div>
   );
 }

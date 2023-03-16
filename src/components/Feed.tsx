@@ -1,22 +1,21 @@
-import React from "react";
-import { CommentType } from "../types/comment";
+import React, { Dispatch } from "react";
+import { PostEvent } from "../reducers/postReducer";
 import { PostType } from "../types/post";
 import Post from "./Post";
 import PostForm from "./PostForm";
 
 interface FeedProps {
-  addPost: (post: PostType) => void;
-  addCommentToPost: (comment: CommentType, postId: string) => void;
+  dispatch: Dispatch<PostEvent>;
   posts?: PostType[];
 }
 
-function Feed({ addPost, addCommentToPost, posts }: FeedProps) {
+function Feed({ dispatch, posts }: FeedProps) {
   return (
     <div className="p-2 md:p-8">
-      <PostForm addPost={addPost}></PostForm>
+      <PostForm dispatch={dispatch}></PostForm>
       {posts?.map((post) => (
         <div key={post.id}>
-          <Post addCommentToPost={addCommentToPost} post={post}></Post>
+          <Post dispatch={dispatch} post={post}></Post>
         </div>
       ))}
     </div>
