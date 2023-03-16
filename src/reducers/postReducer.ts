@@ -6,6 +6,7 @@ export enum PostAction {
   AddPost = "addPost",
   LikePost = "likePost",
   AddPostComment = "addPostComment",
+  LikePostComment = "likePostComment",
 }
 
 export interface BasePostEvent {
@@ -28,7 +29,17 @@ interface AddPostCommentEvent extends BasePostEvent {
   comment: CommentType;
 }
 
-export type PostEvent = AddPostEvent | LikePostEvent | AddPostCommentEvent;
+interface LikePostCommentEvent extends BasePostEvent {
+  type: PostAction.LikePostComment;
+  postId: string;
+  commentId: string;
+}
+
+export type PostEvent =
+  | AddPostEvent
+  | LikePostEvent
+  | AddPostCommentEvent
+  | LikePostCommentEvent;
 
 function addPost(state: AppStateType, action: AddPostEvent) {
   const { post } = action;
@@ -77,6 +88,36 @@ function likePost(state: AppStateType, action: LikePostEvent) {
   return { ...state, posts };
 }
 
+function likePostComment(state: AppStateType, action: LikePostCommentEvent) {
+  const { postId, commentId } = action;
+
+  const posts = state.posts.map((post) => {
+    let comments = post.comments;
+
+    if (post.id === postId) {
+      comments = post.comments?.map((comment) => {
+        let likes = comment.likes;
+        let likedByUser = comment.likedByUser;
+
+        if (comment.id === commentId) {
+          if (likedByUser) {
+            likes--;
+          } else {
+            likes++;
+          }
+          likedByUser = !likedByUser;
+        }
+
+        return { ...comment, likes, likedByUser };
+      });
+    }
+
+    return { ...post, comments };
+  });
+
+  return { ...state, posts };
+}
+
 function postReducer(state: AppStateType, action: PostEvent): AppStateType {
   switch (action.type) {
     case PostAction.AddPost:
@@ -85,6 +126,8 @@ function postReducer(state: AppStateType, action: PostEvent): AppStateType {
       return addPostComment(state, action);
     case PostAction.LikePost:
       return likePost(state, action);
+    case PostAction.LikePostComment:
+      return likePostComment(state, action);
   }
 }
 

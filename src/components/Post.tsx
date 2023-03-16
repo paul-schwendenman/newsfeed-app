@@ -80,7 +80,12 @@ function Post({ post, dispatch }: PostProps) {
       </div>
 
       {post.comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment}></Comment>
+        <Comment
+          key={comment.id}
+          postId={post.id}
+          comment={comment}
+          dispatch={dispatch}
+        ></Comment>
       ))}
     </Card>
   );

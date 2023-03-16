@@ -1,4 +1,6 @@
-const state = {
+import { AppStateType } from "./types/appState";
+
+const state: AppStateType = {
   posts: [
     {
       id: "6c9df76e-eed4-4b51-a9d3-77d3d17e7a9b",
@@ -31,6 +33,7 @@ const state = {
           },
           createdAt: "2023-03-14 14:56",
           likes: 0,
+          likedByUser: false,
         },
       ],
     },
