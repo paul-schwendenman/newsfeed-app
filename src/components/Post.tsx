@@ -1,9 +1,8 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, ReactNode } from "react";
 import type { PostType } from "../types/post";
 import Card from "./Card";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime.js";
-import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import {
   ChatBubbleLeftIcon,
@@ -17,9 +16,10 @@ dayjs.extend(relativeTime);
 interface PostProps {
   post: PostType;
   dispatch: Dispatch<PostEvent>;
+  children: ReactNode;
 }
 
-function Post({ post, dispatch }: PostProps) {
+function Post({ post, dispatch, children }: PostProps) {
   function handleLikePost() {
     dispatch({
       type: PostAction.LikePost,
@@ -78,14 +78,7 @@ function Post({ post, dispatch }: PostProps) {
         </div>
       </div>
 
-      {post.comments?.map((comment) => (
-        <Comment
-          key={comment.id}
-          postId={post.id}
-          comment={comment}
-          dispatch={dispatch}
-        ></Comment>
-      ))}
+      {children}
     </Card>
   );
 }

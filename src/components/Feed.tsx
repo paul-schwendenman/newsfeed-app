@@ -3,6 +3,7 @@ import { PostEvent } from "../reducers/postReducer";
 import { PostType } from "../types/post";
 import Post from "./Post";
 import PostForm from "./PostForm";
+import Comment from "./Comment";
 
 interface FeedProps {
   dispatch: Dispatch<PostEvent>;
@@ -15,7 +16,16 @@ function Feed({ dispatch, posts }: FeedProps) {
       <PostForm dispatch={dispatch}></PostForm>
       {posts?.map((post) => (
         <div key={post.id}>
-          <Post dispatch={dispatch} post={post}></Post>
+          <Post dispatch={dispatch} post={post}>
+            {post.comments?.map((comment) => (
+              <Comment
+                key={comment.id}
+                postId={post.id}
+                comment={comment}
+                dispatch={dispatch}
+              ></Comment>
+            ))}
+          </Post>
         </div>
       ))}
     </div>
